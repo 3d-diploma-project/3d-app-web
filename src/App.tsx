@@ -1,9 +1,17 @@
+import DragAndDrop from './components/DragAndDrop'
 import Experience from './Experience'
 
 const App = () => {
+  async function callback(files: File[]) {
+    const text = await files[0].text()
+    console.log(text)
+  }
   return (
-    <div className="h-dvh bg-[#030B22] flex justify-center items-center text-4xl text-white gap-10">
-      <Experience />
+    <div className="flex h-dvh items-center justify-center gap-10 bg-[#030B22] text-4xl text-[#FAFAFA]">
+      <div className="aspect-video w-full max-w-2xl">
+        <DragAndDrop onFilesLoad={callback} accept="text/plain" />
+      </div>
+      {/* <Experience /> */}
     </div>
   )
 }
