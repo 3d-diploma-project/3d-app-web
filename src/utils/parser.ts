@@ -1,24 +1,29 @@
+import { Index } from '../types/Index'
 import { Vertex } from '../types/Vertex'
 
-export function parseVerticies(input: string): Vertex[] {
-  const verticies = []
-  const lines = input.split('\n')
+export function parseVertices(input: string): Vertex[] {
+  return input
+    .split('\n')
+    .map((line) => line.trim().split(' '))
+    .filter((params) => params.length === 4)
+    .map(([index, x, y, z]) => ({
+      index: Number(index),
+      x: Number(x),
+      y: Number(y),
+      z: Number(z)
+    }))
+}
 
-  for (const line of lines) {
-    const params = line.trim().split(' ')
-    console.log('\n\n', line)
-
-    if (params.length !== 4) {
-      console.log('Error: ', params)
-      return []
-    }
-
-    verticies.push({
-      index: Number(params[0]),
-      x: Number(params[1]),
-      y: Number(params[2]),
-      z: Number(params[3])
-    })
-  }
-  return verticies
+export function parseIndices(input: string): Index[] {
+  return input
+    .split('\n')
+    .map((line) => line.trim().split(' '))
+    .filter((params) => params.length === 5)
+    .map(([index, vertex1, vertex2, vertex3, vertex4]) => ({
+      index: Number(index),
+      vertex1: Number(vertex1),
+      vertex2: Number(vertex2),
+      vertex3: Number(vertex3),
+      vertex4: Number(vertex4)
+    }))
 }

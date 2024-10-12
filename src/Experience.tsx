@@ -20,14 +20,13 @@ const Experience = () => {
 
   const toggleWindow = () => {
     setOpened(!opened)
-    console.log('click')
   }
 
   const loadWIndow = opened ? <LoadWindow state={opened} ref={windowRef} /> : null
 
   useEffect(() => {
     const onCLick = (e: MouseEvent) => {
-      if (windowRef.current == null) return console.log('Opened')
+      if (windowRef.current == null) return
 
       if (!windowRef.current.contains(e.target as Node) && e.target !== folderButton.current) {
         setOpened(false)

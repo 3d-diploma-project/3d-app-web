@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import DragAndDrop from './DragAndDrop'
 import { forwardRef } from 'react'
 import cn from '../utils/cn'
-import { parseVerticies } from '../utils/parser'
+import { parseIndices, parseVertices } from '../utils/parser'
 
 interface WindowType {
   state: boolean
@@ -11,8 +11,8 @@ interface WindowType {
 const LoadWindow = forwardRef<HTMLDivElement, WindowType>(({ state }, ref) => {
   async function callback(files: File[]) {
     const text = await files[0].text()
-    console.log(text)
-    console.log(parseVerticies(text))
+    console.log(parseVertices(text))
+    console.log(parseIndices(text))
   }
 
   return (
