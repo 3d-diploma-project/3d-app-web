@@ -37,7 +37,7 @@ export default defineConfig({
         './src/main.tsx',
         './src/App.tsx',
         './src/vite-env.d.ts',
-        './src/tests/setup.ts',
+        '**/src/tests/setup.ts',
         './vite.config.ts'
       ]
     }
