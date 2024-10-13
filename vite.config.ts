@@ -21,11 +21,13 @@ const exclude = [
 export default defineConfig({
   plugins: [react(), glsl(), restart({ restart: ['../public/**'] })],
   test: {
+    watch: false,
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./src/tests/setup.ts'],
     exclude,
     coverage: {
+      reporter: ['lcov', 'text'],
       reportsDirectory: './src/tests/coverage',
       exclude
     }
