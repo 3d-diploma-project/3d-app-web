@@ -28,7 +28,6 @@ export default defineConfig({
     exclude,
     coverage: {
       reporter: ['lcov', 'text'],
-      reportsDirectory: './src/tests/coverage',
       exclude
     }
   }
