@@ -7,19 +7,6 @@ import glsl from 'vite-plugin-glsl'
 import restart from 'vite-plugin-restart'
 import { configDefaults } from 'vitest/config'
 
-const exclude = [
-  ...configDefaults.exclude,
-  '**/translations/**',
-  '*config.js',
-  '*config.ts',
-  './vite-env.d.ts',
-  './src/main.tsx',
-  './src/App.tsx',
-  './src/vite-env.d.ts',
-  './src/tests/setup.ts',
-  './vite.config.ts'
-]
-
 export default defineConfig({
   plugins: [react(), glsl(), restart({ restart: ['../public/**'] })],
   test: {
@@ -27,10 +14,32 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./src/tests/setup.ts'],
-    exclude,
+    exclude: [
+      ...configDefaults.exclude,
+      '**/translations/**',
+      '*config.js',
+      '*config.ts',
+      './vite-env.d.ts',
+      './src/main.tsx',
+      './src/App.tsx',
+      './src/vite-env.d.ts',
+      './src/tests/setup.ts',
+      './vite.config.ts'
+    ],
     coverage: {
       reporter: ['lcov', 'text'],
-      exclude
+      exclude: [
+        ...configDefaults.exclude,
+        '**/translations/**',
+        '*config.js',
+        '*config.ts',
+        './vite-env.d.ts',
+        './src/main.tsx',
+        './src/App.tsx',
+        './src/vite-env.d.ts',
+        './src/tests/setup.ts',
+        './vite.config.ts'
+      ]
     }
   }
 })
