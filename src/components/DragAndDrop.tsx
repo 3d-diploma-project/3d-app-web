@@ -1,7 +1,7 @@
 import { ChangeEvent, DragEvent, MouseEvent, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import cn from '../utils/cn'
-import AppButton from './AppButton'
+import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
 
 interface DragAndDropProps {
   className?: string
@@ -62,9 +62,9 @@ const DragAndDrop = ({ onFilesLoad, accept, className = '' }: DragAndDropProps) 
       )}
     >
       <input accept={accept} ref={fileInput} type="file" hidden onChange={onFilesLoadHandler} multiple />
-      <AppButton onClick={onBrowseButtonClick} className="text-2xl">
+      <Button onClick={onBrowseButtonClick} className="text-2xl">
         {t('dragAndDrop.browseButtonTitle')}
-      </AppButton>
+      </Button>
       <p className="text-xl">{t('dragAndDrop.orDragFileHere')}</p>
     </form>
   )
