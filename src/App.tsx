@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next'
+
+import Experience from './Experience'
 import DragAndDrop from './components/DragAndDrop'
 import { LanguageSelector } from './components/LanguageSelector'
-import Experience from './Experience'
 
 const App = () => {
   const { t } = useTranslation()
