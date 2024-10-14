@@ -1,5 +1,4 @@
 import DragAndDrop from './components/DragAndDrop'
-import Experience from './Experience'
 
 const App = () => {
   async function callback(files: File[]) {
@@ -11,7 +10,6 @@ const App = () => {
       <div className="aspect-video w-full max-w-2xl">
         <DragAndDrop onFilesLoad={callback} accept="text/plain" />
       </div>
-      {/* <Experience /> */}
     </div>
   )
 }

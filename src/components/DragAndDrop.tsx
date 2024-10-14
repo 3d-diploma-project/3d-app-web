@@ -16,6 +16,11 @@ const DragAndDrop = ({ onFilesLoad, accept, className = '' }: DragAndDropProps) 
   const [drag, setDrag] = useState(false)
   const fileInput = useRef<HTMLInputElement>(null)
 
+  const sendFiles = (files: File[]) => {
+    const filtered = accept ? filterByType(accept, files) : files
+    onFilesLoad(filtered)
+  }
+
   const onBrowseButtonClick = (e: MouseEvent) => {
     e.preventDefault()
     fileInput.current?.click()
@@ -34,23 +39,19 @@ const DragAndDrop = ({ onFilesLoad, accept, className = '' }: DragAndDropProps) 
   const onDropHandler = (e: DragEvent<HTMLFormElement>) => {
     e.preventDefault()
     setDrag(false)
-    if (!e.dataTransfer.files) return
 
-    const files = [...e.dataTransfer.files]
-    const filtered = accept ? filterByType(accept, files) : files
-    onFilesLoad(filtered)
+    if (!e.dataTransfer.files || e.dataTransfer.files.length === 0) return
+    sendFiles([...e.dataTransfer.files])
   }
 
   const onFilesLoadHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) return
-
-    const files = [...e.target.files]
-    const filtered = accept ? filterByType(accept, files) : files
-    onFilesLoad(filtered)
+    if (!e.target.files || e.target.files.length === 0) return
+    sendFiles([...e.target.files])
   }
 
   return (
     <form
+      data-testid="drop-zone"
       onDragOver={onDragOverHandler}
       onDragStart={onDragOverHandler}
       onDragLeave={onDragLeaveHandler}
@@ -61,7 +62,15 @@ const DragAndDrop = ({ onFilesLoad, accept, className = '' }: DragAndDropProps) 
         className
       )}
     >
-      <input accept={accept} ref={fileInput} type="file" hidden onChange={onFilesLoadHandler} multiple />
+      <input
+        data-testid="file-input"
+        accept={accept}
+        ref={fileInput}
+        type="file"
+        hidden
+        onChange={onFilesLoadHandler}
+        multiple
+      />
       <AppButton onClick={onBrowseButtonClick} className="text-2xl">
         {t('dragAndDrop.browseButtonTitle')}
       </AppButton>
