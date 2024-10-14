@@ -31,8 +31,8 @@ describe('LanguageSelector', () => {
     }))
 
     render(<LanguageSelector />)
-    const selectTrigger = screen.getByText('en')
-    expect(selectTrigger).toBeInTheDocument()
+    const select = screen.getByText('en')
+    expect(select).toBeInTheDocument()
   })
 
   it('changes the language', () => {
