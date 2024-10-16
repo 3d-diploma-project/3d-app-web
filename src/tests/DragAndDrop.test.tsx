@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { fireEvent, render, screen } from '@testing-library/react'
-import DragAndDrop from '../../components/DragAndDrop'
+import DragAndDrop from '@/components/DragAndDrop'
 
 const onFilesLoadMock = vi.fn()
 const mockTextFile = new File(['Hello, World!'], 'hello.txt', { type: 'text/plain' })
