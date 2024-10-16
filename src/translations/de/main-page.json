@@ -1,3 +1,23 @@
 {
-  "title": "Hallo"
+  "headerPart1": "Tauchen Sie ein in die Welt der 3D ein:",
+  "headerPart2": "Interaktive Datenanalyse in Echtzeit",
+  "subHeader": "Erhalten Sie schnellen Zugriff auf 3D-Modellvisualisierungen mit dynamischen Datenüberlagerungen für sofortige und bequeme Analysen",
+  "createModelButton": "Modell erstellen",
+  "programFeaturesHeader": "Programmfunktionen",
+  "programFeaturesSubHeader": "Das Programm ermöglicht das Hochladen von Dateien zum Erstellen von Modellen und zur Datenanalyse. Benutzer können das Modell visualisieren und interaktive Werkzeuge für eine detaillierte Ansicht verwenden.",
+  "section1": {
+    "number": "1",
+    "header": "Dateiupload und -verarbeitung:",
+    "body": "Das Programm ermöglicht das Hochladen von Dateien mit Knotenkoordinaten und Elementindizes zum Erstellen des Modells. Zusätzlich können Dateien mit Verschiebungen, Spannungen, Kräften und Einschränkungen hochgeladen werden. Wenn zusätzliche Daten für den gewählten Modus erforderlich sind, informiert das Programm darüber."
+  },
+  "section2": {
+    "number": "2",
+    "header": "Modellkonstruktion und -visualisierung:",
+    "body": "Basierend auf den hochgeladenen Daten erstellt das Programm automatisch das Modell. Benutzer können Spannungen, Verschiebungen, Kräfte und Einschränkungen visualisieren. Das Wechseln der Modi ermöglicht die Analyse des Modells auf verschiedenen Detailebenen."
+  },
+  "section3": {
+    "number": "3",
+    "header": "Analyse und Anpassung:",
+    "body": "Benutzer können die Sichtbarkeit von Knoten- und Elementindizes umschalten, Querschnitte des Modells anzeigen und einzelne Knoten für eine detaillierte Analyse auswählen. Wenn man über einen Knoten fährt, wird eine Information über ihn angezeigt, um die Interaktion zu erleichtern."
+  }
 }

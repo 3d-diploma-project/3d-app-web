@@ -4,14 +4,18 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        geologica: ['Geologica', 'sans-serif']
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)'
       },
       colors: {
+        'app-blue': '#1E0094',
         soft: '#FAFAFA',
-        'button-default': '#1E0094',
+        'coal-black': '#0E0E0E',
         'button-pressed': '#1D0070',
         'button-hover': '#5826EA',
         'button-disabled': '#909090',

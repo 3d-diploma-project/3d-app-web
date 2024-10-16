@@ -1,13 +1,20 @@
-import { useTranslation } from 'react-i18next'
-import { LanguageSelector } from './components/LanguageSelector'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+
+import MainPage from '@/pages/MainPage'
+import Navbar from './components/Navbar'
+import ModelViewPage from './pages/ModelViewPage'
 
 const App = () => {
-  const { t } = useTranslation()
   return (
-    <div className="flex h-dvh items-center justify-center gap-10 text-4xl">
-      <LanguageSelector />
-      <span className="w-20">{t('mainPage.title')}</span>
-    </div>
+    <Router>
+      <div className="grid h-dvh grid-rows-[auto,1fr] text-coal-black">
+        <Navbar />
+        <Routes>
+          <Route path="/" index element={<MainPage />} />
+          <Route path="/model" index element={<ModelViewPage />} />
+        </Routes>
+      </div>
+    </Router>
   )
 }
 

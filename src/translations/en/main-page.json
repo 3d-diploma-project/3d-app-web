@@ -1,3 +1,23 @@
 {
-  "title": "Hello"
+  "headerPart1": "Dive into the world of 3D:",
+  "headerPart2": "Interactive real-time data analysis",
+  "subHeader": "Get quick access to 3D model visualizations with dynamic data overlays for instant and convenient analysis",
+  "createModelButton": "Create Model",
+  "programFeaturesHeader": "Program Features",
+  "programFeaturesSubHeader": "The program allows you to upload files to build models and analyze data. Users can visualize the model and use interactive tools for detailed viewing.",
+  "section1": {
+    "number": "1",
+    "header": "File Upload and Processing:",
+    "body": "The program allows you to upload files with node coordinates and element indices to build the model. Additionally, files with displacements, stresses, forces, and constraints can be uploaded. If additional data is required for the selected mode, the program will notify you."
+  },
+  "section2": {
+    "number": "2",
+    "header": "Model Construction and Visualization:",
+    "body": "Based on the uploaded data, the program automatically creates the model. Users can visualize stresses, displacements, forces, and constraints. Switching modes allows analyzing the model at different levels of detail."
+  },
+  "section3": {
+    "number": "3",
+    "header": "Analysis and Customization:",
+    "body": "Users can toggle the visibility of node and element indices, view model cross-sections, and select individual nodes for detailed analysis. Hovering over a node displays information about it for easier interaction."
+  }
 }
