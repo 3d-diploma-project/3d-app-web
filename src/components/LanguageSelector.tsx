@@ -24,11 +24,11 @@ export function LanguageSelector() {
   }
 
   return (
-    <Select onValueChange={changeLanguage}>
-      <SelectTrigger className="w-16 font-semibold uppercase">
+    <Select data-testid="languageSelector" onValueChange={changeLanguage}>
+      <SelectTrigger className="w-16 border-transparent bg-background font-semibold uppercase hover:border-input">
         <SelectValue placeholder={currentLanguage} />
       </SelectTrigger>
-      <SelectContent className="min-w-20 font-semibold uppercase">{languageItems}</SelectContent>
+      <SelectContent className="min-w-20 bg-background font-semibold uppercase">{languageItems}</SelectContent>
     </Select>
   )
 }
