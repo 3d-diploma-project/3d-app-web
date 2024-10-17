@@ -1,20 +1,25 @@
 import { ChangeEvent, DragEvent, MouseEvent, useRef, useState } from 'react'
+
 import { useTranslation } from 'react-i18next'
+
 import { cn } from '@/lib/utils'
+import { FiPlus } from 'react-icons/fi'
 import { Button } from '@/components/ui/button'
+import { IoCloudUploadOutline } from 'react-icons/io5'
 
 interface DragAndDropProps {
+  onFilesLoad: (files: File[]) => void
+  title?: string
   className?: string
   accept?: string
-  onFilesLoad: (files: File[]) => void
 }
 
-const filterByType = (type: string, files: File[]) => files.filter((file) => file.type === type)
-
-const DragAndDrop = ({ onFilesLoad, accept, className = '' }: DragAndDropProps) => {
+const DragAndDrop = ({ onFilesLoad, accept, title = '', className = '' }: DragAndDropProps) => {
   const { t } = useTranslation()
   const [drag, setDrag] = useState(false)
   const fileInput = useRef<HTMLInputElement>(null)
+
+  const filterByType = (type: string, files: File[]) => files.filter((file) => file.type === type)
 
   const sendFiles = (files: File[]) => {
     const filtered = accept ? filterByType(accept, files) : files
@@ -56,11 +61,9 @@ const DragAndDrop = ({ onFilesLoad, accept, className = '' }: DragAndDropProps) 
       onDragStart={onDragOverHandler}
       onDragLeave={onDragLeaveHandler}
       onDrop={onDropHandler}
-      className={cn(
-        'flex h-full w-full select-none flex-col items-center justify-center gap-2 rounded-md border-2 border-white',
-        { 'border-dashed': drag },
-        className
-      )}
+      className={cn('grid grid-rows-[auto,1fr] justify-center rounded-3xl bg-app-blue-light pt-3', className, {
+        'border-2 border-dashed border-app-blue': drag
+      })}
     >
       <input
         data-testid="file-input"
@@ -71,10 +74,14 @@ const DragAndDrop = ({ onFilesLoad, accept, className = '' }: DragAndDropProps) 
         onChange={onFilesLoadHandler}
         multiple
       />
-      <Button onClick={onBrowseButtonClick} className="text-2xl">
-        {t('dragAndDrop.browseButtonTitle')}
-      </Button>
-      <p className="text-xl">{t('dragAndDrop.orDragFileHere')}</p>
+      <p className="text-center text-base font-semibold">{title}</p>
+      <div className="flex flex-col items-center justify-center gap-2 font-semibold">
+        <IoCloudUploadOutline className="text-2xl" />
+        <p className="text-center">{t('dragAndDrop.hint')}</p>
+        <Button onClick={onBrowseButtonClick} size={'icon'}>
+          <FiPlus className="text-2xl" />
+        </Button>
+      </div>
     </form>
   )
 }

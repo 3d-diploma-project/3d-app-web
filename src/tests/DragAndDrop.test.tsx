@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
+
+import DragAndDrop from '@/components/DragAndDrop'
 import { fireEvent, render, screen } from '@testing-library/react'
-import DragAndDrop from '../../components/DragAndDrop'
 
 const onFilesLoadMock = vi.fn()
 const mockTextFile = new File(['Hello, World!'], 'hello.txt', { type: 'text/plain' })
@@ -16,15 +17,15 @@ describe('DragAndDrop component', () => {
   })
 
   it('should render button and label', () => {
-    const button = screen.getByText('dragAndDrop.browseButtonTitle')
-    const label = screen.getByText('dragAndDrop.orDragFileHere')
+    const button = screen.getByRole('button')
+    const label = screen.getByText('dragAndDrop.hint')
 
     expect(button).toBeInTheDocument()
     expect(label).toBeInTheDocument()
   })
 
   it('triggers file input on browse button click', () => {
-    const button = screen.getByText('dragAndDrop.browseButtonTitle')
+    const button = screen.getByRole('button')
     const fileInput = screen.getByTestId('file-input')
 
     const clickSpy = vi.spyOn(fileInput, 'click')
@@ -34,7 +35,7 @@ describe('DragAndDrop component', () => {
   })
 
   it('should trigger file input on browse button click', () => {
-    const button = screen.getByText('dragAndDrop.browseButtonTitle')
+    const button = screen.getByRole('button')
     const fileInput = screen.getByTestId('file-input')
 
     const clickSpy = vi.spyOn(fileInput, 'click')

@@ -14,6 +14,7 @@ export default {
       },
       colors: {
         'app-blue': '#1E0094',
+        'app-blue-light': '#E5EEFF',
         soft: '#FAFAFA',
         'coal-black': '#0E0E0E',
         'button-pressed': '#1D0070',
