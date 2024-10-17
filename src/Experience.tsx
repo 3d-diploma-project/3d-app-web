@@ -45,10 +45,9 @@ const Experience = () => {
           fov: 45,
           near: 0.1,
           far: 10000,
-          position: [-6, 85, 10]
+          position: [3, 3, 3]
         }}
       >
-        <fog attach="fog" args={['#1B1C1D', 70, 170]} />
         <Scene />
       </Canvas>
 
