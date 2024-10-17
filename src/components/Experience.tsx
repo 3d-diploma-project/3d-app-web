@@ -1,10 +1,8 @@
-import { Canvas } from '@react-three/fiber'
-
-import Scene from './components/Scene'
-
 import { useEffect, useRef, useState } from 'react'
-import LoadWindow from './components/LoadWindow'
-import { cn } from '@/lib/utils'
+
+import LoadWindow from '@/components/LoadWindow'
+import Scene from '@/components/Scene'
+import { Canvas } from '@react-three/fiber'
 
 const Experience = () => {
   const folderButton = useRef(null)
@@ -48,10 +46,7 @@ const Experience = () => {
       <button
         ref={folderButton}
         onClick={toggleWindow}
-        className={cn(
-          'hover: rounded-md bg-[#1E0094] px-2 py-1 hover:bg-[#1e0094af]',
-          'fixed bottom-10 right-10 bg-gray-500'
-        )}
+        className="fixed bottom-10 right-10 rounded-md bg-app-blue px-2 py-1 hover:bg-button-hover"
       >
         📂
       </button>

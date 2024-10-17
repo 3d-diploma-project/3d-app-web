@@ -2,9 +2,9 @@ import { useState } from 'react'
 
 import { useTranslation } from 'react-i18next'
 
-import { Button } from './ui/button'
 import DragAndDrop from './DragAndDrop'
 import OutsideClickHandler from './OutsideClickHandler'
+import { Button } from './ui/button'
 
 interface FilesUploaderProps {
   defaultOpen?: boolean

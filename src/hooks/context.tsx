@@ -1,6 +1,6 @@
-import { createContext, ReactNode, useContext, useState, SetStateAction, Dispatch } from 'react'
-import { Vertex } from '../types/Vertex'
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from 'react'
 import { Index } from '../types/Index'
+import { Vertex } from '../types/Vertex'
 
 interface CustomGeometryProps {
   vertices: Vertex[]

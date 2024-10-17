@@ -1,16 +1,11 @@
-import React, { FC, forwardRef, useContext, useEffect, useRef } from 'react'
-import { useVertex } from '../hooks/useVertex'
-import * as THREE from 'three'
+import { Center, Wireframe } from '@react-three/drei'
+import { FC } from 'react'
 import { useIndice } from '../hooks/useIndice'
-import { Vertex } from '../types/Vertex'
+import { useVertex } from '../hooks/useVertex'
 import { Index } from '../types/Index'
-import { useWindowContext } from '../hooks/context'
-import { Center, GradientTexture, Helper, Wireframe } from '@react-three/drei'
-import { VertexNormalsHelper } from 'three/examples/jsm/Addons.js'
+import { Vertex } from '../types/Vertex'
 
 const CustomGeometry: FC = () => {
-  
-
   const verticesData: Vertex[] = [
     { index: 1, x: 0, y: 1, z: 0 },
     { index: 2, x: 0, y: 0, z: 0 },
@@ -72,8 +67,7 @@ const CustomGeometry: FC = () => {
           <bufferAttribute attach="index" array={index} itemSize={1} count={index.length} />
         </bufferGeometry>
 
-        <meshBasicMaterial/>
-          
+        <meshBasicMaterial />
 
         <Wireframe thickness={0.01} stroke={'black'} />
         {/* <Helper type={VertexNormalsHelper} args={[1, 0xff0000]} /> */}
