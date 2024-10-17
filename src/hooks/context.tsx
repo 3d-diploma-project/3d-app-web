@@ -1,12 +1,12 @@
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from 'react'
-import { Index } from '../types/Index'
+import { Face } from '../types/Index'
 import { Vertex } from '../types/Vertex'
 
 interface CustomGeometryProps {
   vertices: Vertex[]
-  faces: Index[]
+  faces: Face[]
   setVertices: Dispatch<SetStateAction<Vertex[]>>
-  setFaces: Dispatch<SetStateAction<Index[]>>
+  setFaces: Dispatch<SetStateAction<Face[]>>
 }
 
 const LoadWindowContext = createContext<CustomGeometryProps | undefined>(undefined)
@@ -25,7 +25,7 @@ export function useWindowContext() {
 
 export default function LoadWindowProvider({ children }: { children: ReactNode }) {
   const [vertices, setVertices] = useState<Vertex[]>([])
-  const [faces, setFaces] = useState<Index[]>([])
+  const [faces, setFaces] = useState<Face[]>([])
 
   return (
     <LoadWindowContext.Provider value={{ vertices, faces, setVertices, setFaces }}>

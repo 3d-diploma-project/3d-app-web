@@ -1,4 +1,4 @@
-import { Index } from '../types/Index'
+import { Face } from '../types/Index'
 import { Vertex } from '../types/Vertex'
 
 export function parseVertices(input: string): Vertex[] {
@@ -14,7 +14,7 @@ export function parseVertices(input: string): Vertex[] {
     }))
 }
 
-export function parseFaces(input: string): Index[] {
+export function parseFaces(input: string): Face[] {
   return input
     .split('\n')
     .map((line) => line.trim().split(' '))

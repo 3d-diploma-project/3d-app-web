@@ -1,4 +1,4 @@
-export type Index = {
+export type Face = {
   index: number
   vertex1: number
   vertex2: number

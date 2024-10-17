@@ -1,23 +1,23 @@
-import { Index } from '../types/Index'
+import { Face } from '../types/Index'
 
-export function useIndice(data: Index[]) {
+export function useFace(data: Face[]) {
   const faces = new Uint16Array(
-    data.flatMap((indexSet) => [
-      indexSet.vertex1 - 1,
-      indexSet.vertex2 - 1,
-      indexSet.vertex3 - 1,
+    data.flatMap((face) => [
+      face.vertex1 - 1,
+      face.vertex2 - 1,
+      face.vertex3 - 1,
 
-      indexSet.vertex1 - 1,
-      indexSet.vertex2 - 1,
-      indexSet.vertex4 - 1,
+      face.vertex1 - 1,
+      face.vertex2 - 1,
+      face.vertex4 - 1,
 
-      indexSet.vertex2 - 1,
-      indexSet.vertex3 - 1,
-      indexSet.vertex4 - 1,
+      face.vertex2 - 1,
+      face.vertex3 - 1,
+      face.vertex4 - 1,
 
-      indexSet.vertex3 - 1,
-      indexSet.vertex1 - 1,
-      indexSet.vertex4 - 1
+      face.vertex3 - 1,
+      face.vertex1 - 1,
+      face.vertex4 - 1
     ])
   )
 
