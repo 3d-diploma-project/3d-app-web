@@ -1,6 +1,9 @@
 import { useState } from 'react'
-import DragAndDrop from './DragAndDrop'
+
+import { useTranslation } from 'react-i18next'
+
 import { Button } from './ui/button'
+import DragAndDrop from './DragAndDrop'
 import OutsideClickHandler from './OutsideClickHandler'
 
 interface FilesUploaderProps {
@@ -8,6 +11,7 @@ interface FilesUploaderProps {
 }
 
 const FilesUploader = ({ defaultOpen = false }: FilesUploaderProps) => {
+  const { t } = useTranslation()
   const [open, setOpen] = useState(defaultOpen)
 
   const onLoadFilesClick = () => {
@@ -30,7 +34,7 @@ const FilesUploader = ({ defaultOpen = false }: FilesUploaderProps) => {
     console.log('onCreateModelClick')
   }
 
-  if (!open) return <Button onClick={onLoadFilesClick}>Load files</Button>
+  if (!open) return <Button onClick={onLoadFilesClick}>{t('filesUploader.loadFilesButton')}</Button>
 
   return (
     <div
@@ -42,17 +46,17 @@ const FilesUploader = ({ defaultOpen = false }: FilesUploaderProps) => {
           <div className="flex flex-col items-center justify-center gap-5 md:flex-row md:gap-10">
             <DragAndDrop
               onFilesLoad={onVerticesLoad}
-              title="Vertices file"
+              title={t('filesUploader.verticesFile')}
               className="w-full max-w-80 p-5 md:aspect-square"
             />
             <DragAndDrop
               onFilesLoad={onIndicesLoad}
-              title="Indices file"
+              title={t('filesUploader.indicesFile')}
               className="w-full max-w-80 p-5 md:aspect-square"
             />
           </div>
           <div className="flex items-center justify-end">
-            <Button onClick={onCreateModelClick}>Create Model</Button>
+            <Button onClick={onCreateModelClick}>{t('filesUploader.createModelButton')}</Button>
           </div>
         </div>
       </OutsideClickHandler>
