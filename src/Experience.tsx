@@ -1,21 +1,15 @@
 import { Canvas } from '@react-three/fiber'
-import StandartCube from './StandartCube'
+
 import Scene from './components/Scene'
-import { Html } from '@react-three/drei'
-import AppButton from './components/AppButton'
+
 import { useEffect, useRef, useState } from 'react'
 import LoadWindow from './components/LoadWindow'
-import cn from './utils/cn'
+import { cn } from '@/lib/utils'
 
 const Experience = () => {
   const folderButton = useRef(null)
   const [opened, setOpened] = useState(false)
-  const cameraConfig = {
-    fov: 45,
-    near: 0.1,
-    far: 10000,
-    position: [-6, 85, 10]
-  }
+
   const windowRef = useRef<HTMLDivElement>(null)
 
   const toggleWindow = () => {

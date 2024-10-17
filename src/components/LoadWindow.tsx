@@ -1,12 +1,8 @@
-import React, { FC, useState } from 'react'
 import DragAndDrop from './DragAndDrop'
-import { forwardRef, useRef } from 'react'
-import cn from '../utils/cn'
+import { forwardRef } from 'react'
+import { cn } from '@/lib/utils'
 import { parseIndices, parseVertices } from '../utils/parser'
-import { Vertex } from '../types/Vertex'
-import { Index } from '../types/Index'
-import { useVertex } from '../hooks/useVertex'
-import CustomGeometry from './CustomGeometry'
+
 import { useWindowContext } from '../hooks/context'
 
 interface WindowType {
