@@ -47,39 +47,4 @@ describe('OutsideClickHandler', () => {
 
     expect(callbackMock).not.toHaveBeenCalled()
   })
-
-  // it('должен удалять обработчик событий при размонтировании', () => {
-  //   const removeEventListenerSpy = vi.spyOn(document, 'removeEventListener')
-
-  //   const { unmount } = render(
-  //     <OutsideClickHandler callback={callbackMock}>
-  //       <div>childContent</div>
-  //     </OutsideClickHandler>
-  //   )
-
-  //   unmount()
-
-  //   expect(removeEventListenerSpy).toHaveBeenCalledWith('mousedown', expect.any(Function))
-  // })
-
-  // it('должен обновлять callback при его изменении', () => {
-  //   const { rerender } = render(
-  //     <OutsideClickHandler callback={callbackMock}>
-  //       <div>childContent</div>
-  //     </OutsideClickHandler>
-  //   )
-
-  //   const newCallback = vi.fn()
-  //   rerender(
-  //     <OutsideClickHandler callback={newCallback}>
-  //       <div>childContent</div>
-  //     </OutsideClickHandler>
-  //   )
-
-  //   // Клик вне после обновления callback
-  //   fireEvent.mouseDown(document)
-
-  //   expect(newCallback).toHaveBeenCalledTimes(1)
-  //   expect(callbackMock).not.toHaveBeenCalled()
-  // })
 })
