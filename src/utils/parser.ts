@@ -14,7 +14,7 @@ export function parseVertices(input: string): Vertex[] {
     }))
 }
 
-export function parseIndices(input: string): Index[] {
+export function parseFaces(input: string): Index[] {
   return input
     .split('\n')
     .map((line) => line.trim().split(' '))

@@ -22,7 +22,7 @@ const FilesUploader = ({ defaultOpen = false }: FilesUploaderProps) => {
     setOpen(false)
   }
 
-  const onIndicesLoad = (files: File[]) => {
+  const onFacesLoad = (files: File[]) => {
     console.log(files[0].name)
   }
 
@@ -50,8 +50,8 @@ const FilesUploader = ({ defaultOpen = false }: FilesUploaderProps) => {
               className="w-full max-w-80 p-5 md:aspect-square"
             />
             <DragAndDrop
-              onFilesLoad={onIndicesLoad}
-              title={t('filesUploader.indicesFile')}
+              onFilesLoad={onFacesLoad}
+              title={t('filesUploader.facesFile')}
               className="w-full max-w-80 p-5 md:aspect-square"
             />
           </div>

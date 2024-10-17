@@ -2,5 +2,5 @@
   "loadFilesButton": "Bestanden laden",
   "createModelButton": "Model creëren",
   "verticesFile": "Vertex-bestand",
-  "indicesFile": "Index-bestand"
+  "facesFile": "Index-bestand"
 }

@@ -24,7 +24,7 @@ const CustomGeometry: FC = () => {
     { index: 15, x: 0.499983877, y: 0.499983877, z: 0.499983877 }
   ]
 
-  const indicesData: Index[] = [
+  const facesData: Index[] = [
     { index: 1, vertex1: 12, vertex2: 14, vertex3: 10, vertex4: 15 },
     { index: 2, vertex1: 12, vertex2: 14, vertex3: 5, vertex4: 3 },
     { index: 3, vertex1: 11, vertex2: 14, vertex3: 10, vertex4: 7 },
@@ -57,7 +57,7 @@ const CustomGeometry: FC = () => {
   ]
 
   const position = useVertex(verticesData)
-  const index = useIndice(indicesData)
+  const index = useIndice(facesData)
 
   return (
     <Center>
