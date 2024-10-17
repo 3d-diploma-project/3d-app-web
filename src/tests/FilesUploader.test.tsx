@@ -42,7 +42,7 @@ describe('FilesUploader', () => {
 
     fireEvent.mouseDown(outsideContent)
 
-    const button = screen.getByText('Load files')
+    const button = screen.getByText('filesUploader.loadFilesButton')
 
     expect(button).toBeInTheDocument()
     expect(wrapper).not.toBeInTheDocument()
@@ -51,7 +51,7 @@ describe('FilesUploader', () => {
   it('should call vertices callback when loading vertices file', () => {
     render(<FilesUploader defaultOpen />)
     const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
-    const verticesDnd = screen.getByText('Vertices file')
+    const verticesDnd = screen.getByText('filesUploader.verticesFile')
 
     fireEvent.drop(verticesDnd, {
       dataTransfer: {
@@ -65,7 +65,7 @@ describe('FilesUploader', () => {
   it('should call indices callback when loading indices file', () => {
     render(<FilesUploader defaultOpen />)
     const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
-    const indicesDnd = screen.getByText('Indices file')
+    const indicesDnd = screen.getByText('filesUploader.indicesFile')
 
     fireEvent.drop(indicesDnd, {
       dataTransfer: {
@@ -79,7 +79,7 @@ describe('FilesUploader', () => {
   it('should call indices callback when loading indices file', () => {
     render(<FilesUploader defaultOpen />)
     const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
-    const button = screen.getByText('Create Model')
+    const button = screen.getByText('filesUploader.createModelButton')
 
     fireEvent.click(button)
 
