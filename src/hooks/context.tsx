@@ -1,5 +1,5 @@
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from 'react'
-import { Face } from '../types/Index'
+import { Face } from '../types/Face'
 import { Vertex } from '../types/Vertex'
 
 interface CustomGeometryProps {

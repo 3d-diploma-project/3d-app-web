@@ -2,7 +2,7 @@ import { Center, Wireframe } from '@react-three/drei'
 import { FC } from 'react'
 import { useFace } from '../hooks/useIndice'
 import { useVertex } from '../hooks/useVertex'
-import { Face } from '../types/Index'
+import { Face } from '../types/Face'
 import { Vertex } from '../types/Vertex'
 
 const CustomGeometry: FC = () => {

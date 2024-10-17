@@ -1,4 +1,4 @@
-import { Face } from '../types/Index'
+import { Face } from '../types/Face'
 
 export function useFace(data: Face[]) {
   const faces = new Uint16Array(

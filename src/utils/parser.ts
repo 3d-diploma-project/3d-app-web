@@ -1,4 +1,4 @@
-import { Face } from '../types/Index'
+import { Face } from '../types/Face'
 import { Vertex } from '../types/Vertex'
 
 export function parseVertices(input: string): Vertex[] {
