@@ -1,20 +1,30 @@
 import { ChangeEvent, DragEvent, MouseEvent, useRef, useState } from 'react'
+
 import { useTranslation } from 'react-i18next'
-import cn from '../utils/cn'
-import AppButton from './AppButton'
+
+import { cn } from '@/lib/utils'
+import { FiPlus } from 'react-icons/fi'
+import { Button } from '@/components/ui/button'
+import { IoCloudUploadOutline } from 'react-icons/io5'
 
 interface DragAndDropProps {
+  onFilesLoad: (files: File[]) => void
+  title?: string
   className?: string
   accept?: string
-  onFilesLoad: (files: File[]) => void
 }
 
-const filterByType = (type: string, files: File[]) => files.filter((file) => file.type === type)
-
-const DragAndDrop = ({ onFilesLoad, accept, className = '' }: DragAndDropProps) => {
+const DragAndDrop = ({ onFilesLoad, accept, title = '', className = '' }: DragAndDropProps) => {
   const { t } = useTranslation()
   const [drag, setDrag] = useState(false)
   const fileInput = useRef<HTMLInputElement>(null)
+
+  const filterByType = (type: string, files: File[]) => files.filter((file) => file.type === type)
+
+  const sendFiles = (files: File[]) => {
+    const filtered = accept ? filterByType(accept, files) : files
+    onFilesLoad(filtered)
+  }
 
   const onBrowseButtonClick = (e: MouseEvent) => {
     e.preventDefault()
@@ -34,38 +44,44 @@ const DragAndDrop = ({ onFilesLoad, accept, className = '' }: DragAndDropProps) 
   const onDropHandler = (e: DragEvent<HTMLFormElement>) => {
     e.preventDefault()
     setDrag(false)
-    if (!e.dataTransfer.files) return
 
-    const files = [...e.dataTransfer.files]
-    const filtered = accept ? filterByType(accept, files) : files
-    onFilesLoad(filtered)
+    if (!e.dataTransfer.files || e.dataTransfer.files.length === 0) return
+    sendFiles([...e.dataTransfer.files])
   }
 
   const onFilesLoadHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) return
-
-    const files = [...e.target.files]
-    const filtered = accept ? filterByType(accept, files) : files
-    onFilesLoad(filtered)
+    if (!e.target.files || e.target.files.length === 0) return
+    sendFiles([...e.target.files])
   }
 
   return (
     <form
+      data-testid="drop-zone"
       onDragOver={onDragOverHandler}
       onDragStart={onDragOverHandler}
       onDragLeave={onDragLeaveHandler}
       onDrop={onDropHandler}
-      className={cn(
-        'flex h-full w-full select-none flex-col items-center justify-center gap-2 rounded-md border-2 border-white',
-        { 'border-dashed': drag },
-        className
-      )}
+      className={cn('grid grid-rows-[auto,1fr] justify-center rounded-3xl bg-app-blue-light pt-3', className, {
+        'border-2 border-dashed border-app-blue': drag
+      })}
     >
-      <input accept={accept} ref={fileInput} type="file" hidden onChange={onFilesLoadHandler} multiple />
-      <AppButton onClick={onBrowseButtonClick} className="text-2xl">
-        {t('dragAndDrop.browseButtonTitle')}
-      </AppButton>
-      <p className="text-xl">{t('dragAndDrop.orDragFileHere')}</p>
+      <input
+        data-testid="file-input"
+        accept={accept}
+        ref={fileInput}
+        type="file"
+        hidden
+        onChange={onFilesLoadHandler}
+        multiple
+      />
+      <p className="text-center text-base font-semibold">{title}</p>
+      <div className="flex flex-col items-center justify-center gap-2 font-semibold">
+        <IoCloudUploadOutline className="text-2xl" />
+        <p className="text-center">{t('dragAndDrop.hint')}</p>
+        <Button onClick={onBrowseButtonClick} size={'icon'}>
+          <FiPlus className="text-2xl" />
+        </Button>
+      </div>
     </form>
   )
 }

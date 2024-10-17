@@ -1,3 +1,23 @@
 {
-  "title": "Hoi"
+  "headerPart1": "Duik in de wereld van 3D:",
+  "headerPart2": "Interactieve gegevensanalyse in realtime",
+  "subHeader": "Krijg snelle toegang tot 3D-modelvisualisaties met dynamische gegevensoverlays voor onmiddellijke en gemakkelijke analyse",
+  "createModelButton": "Model maken",
+  "programFeaturesHeader": "Programmafuncties",
+  "programFeaturesSubHeader": "Het programma maakt het mogelijk om bestanden te uploaden voor het bouwen van modellen en het analyseren van gegevens. Gebruikers kunnen het model visualiseren en interactieve tools gebruiken voor gedetailleerde weergave.",
+  "section1": {
+    "number": "1",
+    "header": "Bestand Uploaden en Verwerken:",
+    "body": "Het programma maakt het mogelijk om bestanden met knooppuntcoördinaten en elementindices te uploaden voor het bouwen van het model. Daarnaast kunnen bestanden met verplaatsingen, spanningen, krachten en beperkingen worden geüpload. Als er extra gegevens nodig zijn voor de geselecteerde modus, zal het programma dit aangeven."
+  },
+  "section2": {
+    "number": "2",
+    "header": "Modelconstructie en Visualisatie:",
+    "body": "Op basis van de geüploade gegevens maakt het programma automatisch het model. Gebruikers kunnen spanningen, verplaatsingen, krachten en beperkingen visualiseren. Het schakelen tussen modi maakt het mogelijk om het model op verschillende niveaus van detail te analyseren."
+  },
+  "section3": {
+    "number": "3",
+    "header": "Analyse en Aanpassing:",
+    "body": "Gebruikers kunnen de zichtbaarheid van knoop- en elementindices in- en uitschakelen, doorsneden van het model bekijken en afzonderlijke knopen selecteren voor gedetailleerde analyse. Bij het hoveren over een knoop wordt informatie over die knoop weergegeven voor een gemakkelijkere interactie."
+  }
 }
