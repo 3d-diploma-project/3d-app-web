@@ -28,7 +28,8 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src')
     }
   },
-  plugins: [react(), glsl(), restart({ restart: ['../public/**'] })],
+
+  plugins: [react(), glsl(), restart({ restart: ['../src/**'] })],
   test: {
     watch: false,
     globals: true,
