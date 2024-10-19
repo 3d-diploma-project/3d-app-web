@@ -29,7 +29,7 @@ export default defineConfig({
     }
   },
 
-  plugins: [react(), glsl(), restart({ restart: ['../src/**'] })],
+  plugins: [react(), glsl(), restart({ restart: ['../public/**'] })],
   test: {
     watch: false,
     globals: true,

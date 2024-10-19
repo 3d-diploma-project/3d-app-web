@@ -3,8 +3,8 @@ import { Face } from '../types/Face'
 export function useFace(data: Face[]) {
   const faces = new Uint16Array(
     data.flatMap((face) => [
-      face.vertex1 - 1,
       face.vertex2 - 1,
+      face.vertex1 - 1,
       face.vertex3 - 1,
 
       face.vertex1 - 1,
@@ -20,6 +20,8 @@ export function useFace(data: Face[]) {
       face.vertex4 - 1
     ])
   )
+
+  console.log('faces', faces)
 
   return faces
 }

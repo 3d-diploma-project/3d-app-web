@@ -8,7 +8,7 @@ const Experience = () => {
     <Canvas
       camera={{
         fov: 45,
-        near: 0.1,
+        near: 0.001,
         far: 10000,
         position
       }}
