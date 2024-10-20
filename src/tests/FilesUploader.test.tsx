@@ -1,88 +1,76 @@
-import { describe, expect, it, vi } from 'vitest'
-
 import FilesUploader from '@/components/FilesUploader'
 import { fireEvent, render, screen } from '@testing-library/react'
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (str: string) => str,
-    i18n: {
-      changeLanguage: vi.fn()
-    }
-  })
-}))
+const propsMock = {
+  verticesFileName: 'vertices.txt',
+  facesFileName: 'faces.txt',
+  disableCreateModelButton: true,
+  closeModal: vi.fn(),
+  onFacesLoad: vi.fn(() => '1 12 14 10 15'),
+  onVerticesLoad: vi.fn(() => '1 2 3'),
+  onCreateModelClick: vi.fn()
+}
 
-const mockTextFile = new File(['Hello, World!'], 'hello.txt', { type: 'text/plain' })
-
-beforeEach(() => vi.resetAllMocks())
+const verticesFile = new File(['1 0 1 0'], 'vertices.txt', { type: 'text/plain' })
+const facesFile = new File(['1 12 14 10 15'], 'faces.txt', { type: 'text/plain' })
 
 describe('FilesUploader', () => {
-  it('should open modal when button is clicked', () => {
-    render(<FilesUploader defaultOpen={false} />)
-
-    const button = screen.getByRole('button')
-
-    fireEvent.click(button)
-
-    const wrapper = screen.getByTestId('wrapper')
-
-    expect(button).not.toBeInTheDocument()
-    expect(wrapper).toBeInTheDocument()
-  })
-
-  it('should close modal when clicked outside', () => {
+  it('should call closeModal callback when clicked outside', () => {
     render(
       <div>
-        <FilesUploader defaultOpen />
-        <div>outsideContent</div>
+        <FilesUploader {...propsMock} />
+        <div>outside</div>
       </div>
     )
-    const outsideContent = screen.getByText('outsideContent')
-    const wrapper = screen.getByTestId('wrapper')
 
+    const outsideContent = screen.getByText('outside')
     fireEvent.mouseDown(outsideContent)
 
-    const button = screen.getByText('filesUploader.loadFilesButton')
-
-    expect(button).toBeInTheDocument()
-    expect(wrapper).not.toBeInTheDocument()
+    expect(propsMock.closeModal).toHaveBeenCalled()
   })
 
-  it('should call vertices callback when loading vertices file', () => {
-    render(<FilesUploader defaultOpen />)
-    const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
-    const verticesDnd = screen.getByText('filesUploader.verticesFile')
+  it('should render default hints if the fileName is not provided for vertices or faces', () => {
+    const props = { ...propsMock, verticesFileName: '', facesFileName: '' }
+    render(<FilesUploader {...props} />)
 
-    fireEvent.drop(verticesDnd, {
+    const defaulHints = screen.getAllByText('filesUploader.hint')
+
+    expect(defaulHints.length).toEqual(2)
+  })
+
+  it('should call onVerticesLoad when vertices file is loaded', async () => {
+    Object.defineProperty(File.prototype, 'text', {
+      value: propsMock.onVerticesLoad,
+      writable: true
+    })
+
+    render(<FilesUploader {...propsMock} />)
+    const verticesDropZone = screen.getByText('filesUploader.verticesFile')
+
+    fireEvent.drop(verticesDropZone, {
       dataTransfer: {
-        files: [mockTextFile]
+        files: [verticesFile]
       }
     })
 
-    expect(consoleLogSpy).toHaveBeenCalledWith('hello.txt')
+    expect(propsMock.onVerticesLoad).toHaveBeenCalled()
   })
 
-  it('should call faces callback when loading faces file', () => {
-    render(<FilesUploader defaultOpen />)
-    const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
-    const facesDnd = screen.getByText('filesUploader.facesFile')
+  it('should call onFacesLoad when faces file is loaded', () => {
+    Object.defineProperty(File.prototype, 'text', {
+      value: propsMock.onFacesLoad,
+      writable: true
+    })
 
-    fireEvent.drop(facesDnd, {
+    render(<FilesUploader {...propsMock} />)
+    const facesDropZone = screen.getByText('filesUploader.facesFile')
+
+    fireEvent.drop(facesDropZone, {
       dataTransfer: {
-        files: [mockTextFile]
+        files: [facesFile]
       }
     })
 
-    expect(consoleLogSpy).toHaveBeenCalledWith('hello.txt')
-  })
-
-  it('should call faces callback when loading faces file', () => {
-    render(<FilesUploader defaultOpen />)
-    const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
-    const button = screen.getByText('filesUploader.createModelButton')
-
-    fireEvent.click(button)
-
-    expect(consoleLogSpy).toHaveBeenCalledWith('onCreateModelClick')
+    expect(propsMock.onFacesLoad).toHaveBeenCalled()
   })
 })

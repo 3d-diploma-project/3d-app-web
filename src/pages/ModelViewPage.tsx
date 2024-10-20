@@ -1,11 +1,53 @@
+import { useState } from 'react'
+
 import Experience from '@/components/Experience'
 import FilesUploader from '@/components/FilesUploader'
-import { useAppSelector } from '@/hooks/use-redux'
+import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
+import { setFaces, setVertices } from '@/redux/slices/modelSlice'
+import { Face } from '@/types/Face'
+import { Vertex } from '@/types/Vertex'
 
 const ModelViewPage = () => {
-  const isEmpty = useAppSelector((store) => store.model.isEmpty)
+  const { isEmpty, facesFileName, verticesFileName } = useAppSelector((store) => store.model)
+  const [filesUploaderOpen, setFilesUploaderOpen] = useState(isEmpty)
+  const dispatch = useAppDispatch()
 
-  if (isEmpty) return <FilesUploader defaultOpen={isEmpty} />
+  const onFacesLoad = (faces: Face[], fileName: string) => {
+    dispatch(
+      setFaces({
+        faces,
+        fileName
+      })
+    )
+  }
+
+  const onVerticesLoad = (vertices: Vertex[], fileName: string) => {
+    dispatch(
+      setVertices({
+        vertices,
+        fileName
+      })
+    )
+  }
+
+  const closeModal = () => {
+    setFilesUploaderOpen(false)
+  }
+
+  if (filesUploaderOpen) {
+    return (
+      <FilesUploader
+        verticesFileName={verticesFileName}
+        facesFileName={facesFileName}
+        disableCreateModelButton={isEmpty}
+        closeModal={closeModal}
+        onFacesLoad={onFacesLoad}
+        onVerticesLoad={onVerticesLoad}
+        onCreateModelClick={closeModal}
+      />
+    )
+  }
+
   return <Experience />
 }
 
