@@ -34,25 +34,21 @@ const ModelViewPage = () => {
     setFilesUploaderOpen(false)
   }
 
-  if (!filesUploaderOpen) {
-    return <Experience />
+  if (filesUploaderOpen) {
+    return (
+      <FilesUploader
+        verticesFileName={verticesFileName}
+        facesFileName={facesFileName}
+        disableCreateModelButton={isEmpty}
+        closeModal={closeModal}
+        onFacesLoad={onFacesLoad}
+        onVerticesLoad={onVerticesLoad}
+        onCreateModelClick={closeModal}
+      />
+    )
   }
 
-  return (
-    <>
-      {filesUploaderOpen && (
-        <FilesUploader
-          verticesFileName={verticesFileName}
-          facesFileName={facesFileName}
-          disableCreateModelButton={isEmpty}
-          closeModal={closeModal}
-          onFacesLoad={onFacesLoad}
-          onVerticesLoad={onVerticesLoad}
-          onCreateModelClick={closeModal}
-        />
-      )}
-    </>
-  )
+  return <Experience />
 }
 
 export default ModelViewPage

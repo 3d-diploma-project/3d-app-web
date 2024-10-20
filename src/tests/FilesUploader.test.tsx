@@ -1,17 +1,13 @@
 import FilesUploader from '@/components/FilesUploader'
 import { fireEvent, render, screen } from '@testing-library/react'
 
-global.File = vi.fn().mockImplementation(() => ({
-  text: Promise.resolve(vi.fn())
-}))
-
 const propsMock = {
   verticesFileName: 'vertices.txt',
   facesFileName: 'faces.txt',
   disableCreateModelButton: true,
   closeModal: vi.fn(),
-  onFacesLoad: vi.fn(),
-  onVerticesLoad: vi.fn(),
+  onFacesLoad: vi.fn(() => '1 12 14 10 15'),
+  onVerticesLoad: vi.fn(() => '1 2 3'),
   onCreateModelClick: vi.fn()
 }
 
@@ -43,6 +39,11 @@ describe('FilesUploader', () => {
   })
 
   it('should call onVerticesLoad when vertices file is loaded', async () => {
+    Object.defineProperty(File.prototype, 'text', {
+      value: propsMock.onVerticesLoad,
+      writable: true
+    })
+
     render(<FilesUploader {...propsMock} />)
     const verticesDropZone = screen.getByText('filesUploader.verticesFile')
 
@@ -56,6 +57,11 @@ describe('FilesUploader', () => {
   })
 
   it('should call onFacesLoad when faces file is loaded', () => {
+    Object.defineProperty(File.prototype, 'text', {
+      value: propsMock.onFacesLoad,
+      writable: true
+    })
+
     render(<FilesUploader {...propsMock} />)
     const facesDropZone = screen.getByText('filesUploader.facesFile')
 
