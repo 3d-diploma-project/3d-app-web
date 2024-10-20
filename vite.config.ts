@@ -20,7 +20,8 @@ const exclude = [
   './src/vite-env.d.ts',
   './src/tests/setup.ts',
   './vite.config.ts',
-  '**/setup.ts'
+  '**/setup.ts',
+  '**/store.ts'
 ]
 export default defineConfig({
   resolve: {

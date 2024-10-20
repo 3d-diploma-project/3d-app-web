@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest'
 
 import MainPage from '@/pages/MainPage'
 import { fireEvent, screen } from '@testing-library/react'
-import { renderWithProviders } from './utils'
+import { renderWithProviders } from '../utils'
 
 const navigateMock = vi.fn()
 

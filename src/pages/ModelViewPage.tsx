@@ -3,13 +3,13 @@ import { useState } from 'react'
 import Experience from '@/components/Experience'
 import FilesUploader from '@/components/FilesUploader'
 import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
-import { setFaces, setVertices } from '@/redux/slices/modelSlice'
+import { setFaces, setReady, setVertices } from '@/redux/slices/modelSlice'
 import { Face } from '@/types/Face'
 import { Vertex } from '@/types/Vertex'
 
 const ModelViewPage = () => {
-  const { isEmpty, facesFileName, verticesFileName } = useAppSelector((store) => store.model)
-  const [filesUploaderOpen, setFilesUploaderOpen] = useState(isEmpty)
+  const { isReady, facesFileName, verticesFileName, faces, vertices } = useAppSelector((store) => store.model)
+  const [filesUploaderOpen, setFilesUploaderOpen] = useState(!isReady)
   const dispatch = useAppDispatch()
 
   const onFacesLoad = (faces: Face[], fileName: string) => {
@@ -31,24 +31,30 @@ const ModelViewPage = () => {
   }
 
   const closeModal = () => {
+    dispatch(setReady(faces.length > 0 && vertices.length > 0))
     setFilesUploaderOpen(false)
   }
 
-  if (filesUploaderOpen) {
-    return (
-      <FilesUploader
-        verticesFileName={verticesFileName}
-        facesFileName={facesFileName}
-        disableCreateModelButton={isEmpty}
-        closeModal={closeModal}
-        onFacesLoad={onFacesLoad}
-        onVerticesLoad={onVerticesLoad}
-        onCreateModelClick={closeModal}
-      />
-    )
-  }
-
-  return <Experience />
+  return (
+    <>
+      {isReady && (
+        <div data-testid="experience">
+          <Experience />
+        </div>
+      )}
+      {filesUploaderOpen && (
+        <FilesUploader
+          verticesFileName={verticesFileName}
+          facesFileName={facesFileName}
+          disableCreateModelButton={isReady}
+          closeModal={closeModal}
+          onFacesLoad={onFacesLoad}
+          onVerticesLoad={onVerticesLoad}
+          onCreateModelClick={closeModal}
+        />
+      )}
+    </>
+  )
 }
 
 export default ModelViewPage

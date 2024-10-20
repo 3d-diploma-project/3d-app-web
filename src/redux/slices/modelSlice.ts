@@ -6,15 +6,15 @@ import { createSlice } from '@reduxjs/toolkit'
 export interface ModelState {
   faces: Face[]
   vertices: Vertex[]
-  isEmpty: boolean
+  isReady: boolean
   facesFileName: string
   verticesFileName: string
 }
 
-const initialState: ModelState = {
+export const initialState: ModelState = {
   faces: [],
   vertices: [],
-  isEmpty: true,
+  isReady: false,
   facesFileName: '',
   verticesFileName: ''
 }
@@ -27,18 +27,19 @@ export const modelSlice = createSlice({
       const { faces, fileName } = action.payload
       state.faces = faces
       state.facesFileName = fileName
-      state.isEmpty = state.vertices.length === 0 || faces.length === 0
     },
     setVertices: (state, action: PayloadAction<{ vertices: Vertex[]; fileName: string }>) => {
       const { vertices, fileName } = action.payload
       state.vertices = vertices
       state.verticesFileName = fileName
-      state.isEmpty = state.faces.length === 0 || vertices.length === 0
     },
-    resetModel: () => initialState
+    resetModel: () => initialState,
+    setReady: (state, action: PayloadAction<boolean>) => {
+      state.isReady = action.payload
+    }
   }
 })
 
-export const { setFaces, setVertices, resetModel } = modelSlice.actions
+export const { setFaces, setVertices, resetModel, setReady } = modelSlice.actions
 
 export default modelSlice.reducer
