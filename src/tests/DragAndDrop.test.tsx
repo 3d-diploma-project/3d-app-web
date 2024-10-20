@@ -9,7 +9,7 @@ const mockImageFile = new File([], 'hello.png', { type: 'image/png' })
 
 describe('DragAndDrop component', () => {
   beforeEach(() => {
-    render(<DragAndDrop onFilesLoad={onFilesLoadMock} accept="text/plain" />)
+    render(<DragAndDrop hint="hint text" onFilesLoad={onFilesLoadMock} accept="text/plain" />)
   })
 
   afterEach(() => {
@@ -18,7 +18,7 @@ describe('DragAndDrop component', () => {
 
   it('should render button and label', () => {
     const button = screen.getByRole('button')
-    const label = screen.getByText('dragAndDrop.hint')
+    const label = screen.getByText('hint text')
 
     expect(button).toBeInTheDocument()
     expect(label).toBeInTheDocument()
@@ -103,7 +103,7 @@ describe('DragAndDrop component', () => {
 
 describe('DragAndDrop component no accept provided', () => {
   it('just return files if no accept is provided', () => {
-    render(<DragAndDrop onFilesLoad={onFilesLoadMock} accept={undefined} />)
+    render(<DragAndDrop hint="hint text" onFilesLoad={onFilesLoadMock} accept={undefined} />)
     const fileInput = screen.getByTestId('file-input')
 
     fireEvent.change(fileInput, {
