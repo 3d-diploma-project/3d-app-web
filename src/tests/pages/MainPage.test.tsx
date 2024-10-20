@@ -1,7 +1,8 @@
 import { describe, expect, it, vi } from 'vitest'
 
 import MainPage from '@/pages/MainPage'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
+import { renderWithProviders } from '../utils'
 
 const navigateMock = vi.fn()
 
@@ -20,7 +21,7 @@ vi.mock('react-i18next', () => ({
 
 describe('MainPage', () => {
   it('displays headers and sub headers', () => {
-    render(<MainPage />)
+    renderWithProviders(<MainPage />)
     const headerItems = [
       'mainPage.headerPart1',
       'mainPage.headerPart2',
@@ -36,7 +37,7 @@ describe('MainPage', () => {
   })
 
   it('navigates to /model on button click', () => {
-    render(<MainPage />)
+    renderWithProviders(<MainPage />)
 
     const button = screen.getByText('mainPage.createModelButton')
     fireEvent.click(button)

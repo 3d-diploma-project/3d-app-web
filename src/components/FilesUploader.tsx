@@ -1,40 +1,56 @@
-import { useState } from 'react'
-
 import { useTranslation } from 'react-i18next'
 
-import { Button } from './ui/button'
-import DragAndDrop from './DragAndDrop'
-import OutsideClickHandler from './OutsideClickHandler'
+import DragAndDrop from '@/components/DragAndDrop'
+import OutsideClickHandler from '@/components/OutsideClickHandler'
+import { Button } from '@/components/ui/button'
+import { parseFaces, parseVertices } from '@/lib/parser'
+import { Face } from '@/types/Face'
+import { Vertex } from '@/types/Vertex'
 
 interface FilesUploaderProps {
-  defaultOpen?: boolean
+  verticesFileName: string
+  facesFileName: string
+  disableCreateModelButton: boolean
+  closeModal: () => void
+  onFacesLoad: (faces: Face[], fileName: string) => void
+  onVerticesLoad: (vertices: Vertex[], fileName: string) => void
+  onCreateModelClick: () => void
 }
 
-const FilesUploader = ({ defaultOpen = false }: FilesUploaderProps) => {
+const FilesUploader = ({
+  verticesFileName,
+  facesFileName,
+  disableCreateModelButton,
+  closeModal,
+  onFacesLoad,
+  onVerticesLoad,
+  onCreateModelClick
+}: FilesUploaderProps) => {
   const { t } = useTranslation()
-  const [open, setOpen] = useState(defaultOpen)
 
-  const onLoadFilesClick = () => {
-    setOpen(true)
-  }
+  const verticesHint = verticesFileName === '' ? t('filesUploader.hint') : verticesFileName
+  const facesHint = facesFileName === '' ? t('filesUploader.hint') : facesFileName
 
   const outsideClickHandler = () => {
-    setOpen(false)
+    closeModal()
   }
 
-  const onIndicesLoad = (files: File[]) => {
-    console.log(files[0].name)
+  async function parseText<T>(file: File, parser: (input: string) => T) {
+    const input = await file.text()
+    return parser(input)
   }
 
-  const onVerticesLoad = (files: File[]) => {
-    console.log(files[0].name)
+  const onFacesLoadHandler = async (files: File[]) => {
+    const file = files[0]
+    const faces = await parseText(files[0], parseFaces)
+    onFacesLoad(faces, file.name)
   }
 
-  const onCreateModelClick = () => {
-    console.log('onCreateModelClick')
+  const onVerticesLoadHandler = async (files: File[]) => {
+    const file = files[0]
+    const vertices = await parseText(file, parseVertices)
+    onVerticesLoad(vertices, file.name)
   }
-
-  if (!open) return <Button onClick={onLoadFilesClick}>{t('filesUploader.loadFilesButton')}</Button>
 
   return (
     <div
@@ -45,18 +61,22 @@ const FilesUploader = ({ defaultOpen = false }: FilesUploaderProps) => {
         <div className="grid aspect-video max-w-7xl grid-rows-[1fr,auto] gap-5 rounded-3xl bg-white p-5 md:gap-10 md:p-10">
           <div className="flex flex-col items-center justify-center gap-5 md:flex-row md:gap-10">
             <DragAndDrop
-              onFilesLoad={onVerticesLoad}
+              hint={verticesHint}
+              onFilesLoad={onVerticesLoadHandler}
               title={t('filesUploader.verticesFile')}
               className="w-full max-w-80 p-5 md:aspect-square"
             />
             <DragAndDrop
-              onFilesLoad={onIndicesLoad}
-              title={t('filesUploader.indicesFile')}
+              hint={facesHint}
+              onFilesLoad={onFacesLoadHandler}
+              title={t('filesUploader.facesFile')}
               className="w-full max-w-80 p-5 md:aspect-square"
             />
           </div>
           <div className="flex items-center justify-end">
-            <Button onClick={onCreateModelClick}>{t('filesUploader.createModelButton')}</Button>
+            <Button disabled={disableCreateModelButton} onClick={onCreateModelClick}>
+              {t('filesUploader.createModelButton')}
+            </Button>
           </div>
         </div>
       </OutsideClickHandler>

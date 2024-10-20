@@ -1,11 +1,11 @@
 /// <reference types="vitest"/>
 /// <reference types="vite/client"/>
 
-import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import path from 'path'
+import { defineConfig } from 'vite'
 import glsl from 'vite-plugin-glsl'
 import restart from 'vite-plugin-restart'
-import path from 'path'
 import { configDefaults } from 'vitest/config'
 
 const exclude = [
@@ -20,7 +20,8 @@ const exclude = [
   './src/vite-env.d.ts',
   './src/tests/setup.ts',
   './vite.config.ts',
-  '**/setup.ts'
+  '**/setup.ts',
+  '**/store.ts'
 ]
 export default defineConfig({
   resolve: {
@@ -28,6 +29,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src')
     }
   },
+
   plugins: [react(), glsl(), restart({ restart: ['../public/**'] })],
   test: {
     watch: false,
