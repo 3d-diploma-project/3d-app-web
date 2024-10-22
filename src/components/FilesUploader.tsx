@@ -64,13 +64,13 @@ const FilesUploader = ({
               hint={verticesHint}
               onFilesLoad={onVerticesLoadHandler}
               title={t('filesUploader.verticesFile')}
-              className="w-full max-w-80 p-5 md:aspect-square"
+              className="max-w-80 p-5 md:aspect-square w-64"
             />
             <DragAndDrop
               hint={facesHint}
               onFilesLoad={onFacesLoadHandler}
               title={t('filesUploader.facesFile')}
-              className="w-full max-w-80 p-5 md:aspect-square"
+              className="max-w-80 p-5 md:aspect-square w-64"
             />
           </div>
           <div className="flex items-center justify-end">

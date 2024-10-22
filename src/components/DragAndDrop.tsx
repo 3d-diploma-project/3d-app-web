@@ -59,7 +59,7 @@ const DragAndDrop = ({ onFilesLoad, accept, hint, title = '', className = '' }: 
       onDragStart={onDragOverHandler}
       onDragLeave={onDragLeaveHandler}
       onDrop={onDropHandler}
-      className={cn('grid grid-rows-[auto,1fr] justify-center rounded-3xl bg-app-blue-light pt-3', className, {
+      className={cn('flex flex-col justify-between items-center rounded-3xl bg-app-blue-light pt-3', className, {
         'border-2 border-dashed border-app-blue': drag
       })}
     >
@@ -76,10 +76,10 @@ const DragAndDrop = ({ onFilesLoad, accept, hint, title = '', className = '' }: 
       <div className="flex flex-col items-center justify-center gap-2 font-semibold">
         <IoCloudUploadOutline className="text-2xl" />
         <p className="text-center">{hint}</p>
-        <Button onClick={onBrowseButtonClick} size={'icon'}>
-          <FiPlus className="text-2xl" />
-        </Button>
       </div>
+      <Button onClick={onBrowseButtonClick} size={'icon'}>
+        <FiPlus className="text-2xl" />
+      </Button>
     </form>
   )
 }
