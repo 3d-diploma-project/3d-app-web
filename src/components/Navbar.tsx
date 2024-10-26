@@ -1,11 +1,13 @@
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import { LanguageSelector } from './LanguageSelector'
 import Logo from './ui/Logo'
 
 const Navbar = () => {
   const { t } = useTranslation()
+  const location = useLocation()
+  const displayMenuTitles = location.pathname !== '/model'
 
   const menuTitles = [
     t('navbar.menuTitles.home'),
@@ -21,13 +23,14 @@ const Navbar = () => {
       {item}
     </Link>
   ))
+
   return (
     <div className="mx-auto hidden w-full max-w-7xl flex-shrink-0 items-center justify-between pt-8 font-geologica md:flex">
       <Link to={'/'} className="flex cursor-pointer flex-col items-center justify-center pl-3 text-app-blue">
         <Logo />
         <p className="uppercase">tetrahedron</p>
       </Link>
-      <div className="flex items-center justify-center gap-7">{menuItems}</div>
+      <div className="flex items-center justify-center gap-7">{displayMenuTitles ? menuItems : null}</div>
       <LanguageSelector />
     </div>
   )
