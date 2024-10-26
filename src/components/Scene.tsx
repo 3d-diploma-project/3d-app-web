@@ -4,7 +4,7 @@ import CustomGeometry from './CustomGeometry'
 const Scene = () => {
   return (
     <>
-      <OrbitControls />
+      <OrbitControls makeDefault enablePan={false} />
       <ambientLight intensity={0.7} />
       <CustomGeometry />
       <GizmoHelper alignment="bottom-center" margin={[80, 80]}>

@@ -1,11 +1,15 @@
 import { useState } from 'react'
 
-import Experience from '@/components/Experience'
 import FilesUploader from '@/components/FilesUploader'
+import Scene from '@/components/Scene'
 import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
 import { setFaces, setReady, setVertices } from '@/redux/slices/modelSlice'
 import { Face } from '@/types/Face'
 import { Vertex } from '@/types/Vertex'
+import { PerspectiveCamera } from '@react-three/drei'
+import { Canvas } from '@react-three/fiber'
+
+export type cameraType = [number, number, number]
 
 const ModelViewPage = () => {
   const { isReady, facesFileName, verticesFileName, faces, vertices } = useAppSelector((store) => store.model)
@@ -35,11 +39,23 @@ const ModelViewPage = () => {
     setFilesUploaderOpen(false)
   }
 
+  const [cameraPosition] = useState<cameraType>([3, 3, 3])
+
+  const cameraProps = {
+    fov: 45,
+    near: 0.001,
+    far: 10000,
+    position: cameraPosition
+  }
+
   return (
     <>
       {isReady && (
         <div data-testid="experience">
-          <Experience />
+          <Canvas>
+            <PerspectiveCamera {...cameraProps} makeDefault />
+            <Scene />
+          </Canvas>
         </div>
       )}
       {filesUploaderOpen && (

@@ -22,7 +22,6 @@ const CustomGeometry: FC = () => {
         <meshBasicMaterial />
 
         <Wireframe thickness={0.01} stroke={'black'} />
-        {/* <Helper type={VertexNormalsHelper} /> */}
       </mesh>
     </Center>
   )
