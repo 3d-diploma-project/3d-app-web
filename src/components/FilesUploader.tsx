@@ -55,7 +55,7 @@ const FilesUploader = ({
   return (
     <div
       data-testid="wrapper"
-      className="absolute left-0 top-0 flex size-96 h-dvh w-dvw items-center justify-center bg-black/50 p-5 md:p-10"
+      className="absolute left-0 top-0 z-50 flex size-96 h-dvh w-dvw items-center justify-center bg-black/50 p-5 md:p-10"
     >
       <OutsideClickHandler callback={outsideClickHandler}>
         <div className="grid aspect-video max-w-7xl grid-rows-[1fr,auto] gap-5 rounded-3xl bg-white p-5 md:gap-10 md:p-10">
@@ -64,13 +64,13 @@ const FilesUploader = ({
               hint={verticesHint}
               onFilesLoad={onVerticesLoadHandler}
               title={t('filesUploader.verticesFile')}
-              className="max-w-80 p-5 md:aspect-square w-64"
+              className="aspect-square w-64 p-5"
             />
             <DragAndDrop
               hint={facesHint}
               onFilesLoad={onFacesLoadHandler}
               title={t('filesUploader.facesFile')}
-              className="max-w-80 p-5 md:aspect-square w-64"
+              className="aspect-square w-64 p-5"
             />
           </div>
           <div className="flex items-center justify-end">
