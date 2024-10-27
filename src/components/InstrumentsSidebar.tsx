@@ -16,7 +16,6 @@ const InstrumentsSidebar = ({ buttonsData }: InstrumentsSidebarProps) => {
 
   const buttonClickHandler = (button: ButtonData, buttonIndex: number) => {
     setActiveButtonIndex(buttonIndex)
-    console.log(button.tooltip)
   }
 
   const circlePosition = {
