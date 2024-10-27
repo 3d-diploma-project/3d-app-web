@@ -30,7 +30,7 @@ const Navbar = () => {
         <Logo />
         <p className="uppercase">tetrahedron</p>
       </Link>
-      <div className="flex items-center justify-center gap-7">{displayMenuTitles ? menuItems : null}</div>
+      {displayMenuTitles && <div className="flex items-center justify-center gap-7">{menuItems}</div>}
       <LanguageSelector />
     </div>
   )
