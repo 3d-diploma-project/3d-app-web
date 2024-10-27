@@ -7,7 +7,7 @@ import ModelViewPage from './pages/ModelViewPage'
 const App = () => {
   return (
     <Router>
-      <div className="grid h-dvh grid-rows-[auto,1fr] text-coal-black">
+      <div className="grid h-dvh grid-rows-1 md:grid-rows-[auto,1fr] text-coal-black">
         <Navbar />
         <Routes>
           <Route path="/" index element={<MainPage />} />
