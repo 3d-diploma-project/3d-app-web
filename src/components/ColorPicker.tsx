@@ -4,8 +4,6 @@ interface ColorPickerProps {
 }
 
 const ColorPicker = ({ title, defaultColor = '000000' }: ColorPickerProps) => {
-  // TODO: implement color picking
-  // TODO: implement color validation
   return (
     <div className="flex items-center justify-between gap-1 font-semibold">
       {title && <p>{title}</p>}
