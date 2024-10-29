@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Experience from '@/components/Experience'
 import FilesUploader from '@/components/FilesUploader'
 import InstrumentsSidebar from '@/components/InstrumentsSidebar'
+import Toolbar from '@/components/Toolbar'
 import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
 import { setFaces, setReady, setVertices } from '@/redux/slices/modelSlice'
 import { Face } from '@/types/Face'
@@ -48,6 +49,7 @@ const ModelViewPage = () => {
             <Experience />
           </div>
         )}
+        <Toolbar />
       </div>
 
       {filesUploaderOpen && (
