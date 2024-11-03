@@ -13,6 +13,7 @@ export default {
         sm: 'calc(var(--radius) - 4px)'
       },
       colors: {
+        peach: '#E7EDF2',
         'app-blue': '#1E0094',
         'app-blue-light': '#E5EEFF',
         soft: '#FAFAFA',
