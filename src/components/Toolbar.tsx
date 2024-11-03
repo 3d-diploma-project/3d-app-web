@@ -10,10 +10,11 @@ const Toolbar = () => {
       <ColorPicker title="Колір фону" />
       <ColorPicker title="Колір моделі" />
       <ColorPicker title="Колір вузлів" />
-      <ButtonWithTitle variant="ghost" title="Файл з напруженням" buttonText="file.txt" />
-      <ButtonWithTitle title="Файл з переміщеннями" buttonText="Завантажити файл" />
-      <ButtonWithTitle title="Файл з прикладеними силами" buttonText="Завантажити файл" />
-      <ButtonWithTitle title="Файл з закріпленнями" buttonText="Завантажити файл" />
+      <ButtonWithTitle title="Напруження у вузлах" buttonText="Завантажити файл" />
+      <ButtonWithTitle title="Переміщення у вузлах" buttonText="Завантажити файл" />
+      <ButtonWithTitle variant="ghost" title="Прикладені сили" buttonText="file.txt" />
+      <ButtonWithTitle buttonText="Завантажити файл" />
+      <ButtonWithTitle title="Закріплені вузли" buttonText="Завантажити файл" />
     </div>
   )
 }

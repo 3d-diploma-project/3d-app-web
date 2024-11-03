@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 
 interface ButtonWithTitleProps {
-  title: string
+  title?: string
   buttonText: string
   variant?: 'default' | 'ghost'
   onClick?: () => void
@@ -10,7 +10,7 @@ interface ButtonWithTitleProps {
 const ButtonWithTitle = ({ title, buttonText, onClick, variant = 'default' }: ButtonWithTitleProps) => {
   return (
     <div className="space-y-1">
-      <p className="font-semibold">{title}</p>
+      {title && <p className="font-semibold">{title}</p>}
       <Button variant={variant} onClick={onClick} size="sm" className="w-full">
         {buttonText}
       </Button>
