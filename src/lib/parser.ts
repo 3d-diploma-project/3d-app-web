@@ -17,6 +17,7 @@ function hasValidLineFormat(input: string, expectedLength: number): boolean {
 
 export function parseFaces(input: string): Face[] {
   if (isDefaultFaces(input)) return parseDefaultFaces(input)
+  if (isAnsysFaces(input)) return parseAnsysFaces(input)
   return []
 }
 
@@ -44,10 +45,28 @@ export function parseDefaultFaces(input: string): Face[] {
   }))
 }
 
+export function parseAnsysFaces(input: string): Face[] {
+  const ansysFacesFields = { index: 0, vertex1: 6, vertex2: 7, vertex3: 8, vertex4: 10 }
+  return filterByLength(parseLines(input), 14).map((line) => {
+    const { index, vertex1, vertex2, vertex3, vertex4 } = ansysFacesFields
+    return {
+      index: Number(line[index]),
+      vertex1: Number(line[vertex1]),
+      vertex2: Number(line[vertex2]),
+      vertex3: Number(line[vertex3]),
+      vertex4: Number(line[vertex4])
+    }
+  })
+}
+
 export function isDefaultVertices(input: string): boolean {
   return hasValidLineFormat(input, 4)
 }
 
 export function isDefaultFaces(input: string): boolean {
   return hasValidLineFormat(input, 5)
+}
+
+export function isAnsysFaces(input: string): boolean {
+  return hasValidLineFormat(input, 14)
 }
