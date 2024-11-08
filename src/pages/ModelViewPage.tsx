@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import FilesUploader from '@/components/FilesUploader'
 import Scene from '@/components/Scene'
 import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
@@ -8,6 +6,7 @@ import { Face } from '@/types/Face'
 import { Vertex } from '@/types/Vertex'
 import { PerspectiveCamera } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
+import { useState } from 'react'
 
 export type cameraType = [number, number, number]
 
