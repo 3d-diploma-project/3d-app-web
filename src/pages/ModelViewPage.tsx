@@ -1,12 +1,13 @@
 import { useState } from 'react'
 
-import Experience from '@/components/Experience'
 import FilesUploader from '@/components/FilesUploader'
 import InstrumentsSidebar from '@/components/InstrumentsSidebar'
+import Scene from '@/components/Scene'
 import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
 import { setFaces, setReady, setVertices } from '@/redux/slices/modelSlice'
 import { Face } from '@/types/Face'
 import { Vertex } from '@/types/Vertex'
+import { Canvas } from '@react-three/fiber'
 import { GrPowerReset } from 'react-icons/gr'
 import { IoMove } from 'react-icons/io5'
 import { MdDelete } from 'react-icons/md'
@@ -45,7 +46,16 @@ const ModelViewPage = () => {
         <InstrumentsSidebar buttonsData={buttonsData} />
         {isReady && (
           <div data-testid="experience" className="h-full w-full">
-            <Experience />
+            <Canvas
+              camera={{
+                fov: 45,
+                near: 0.001,
+                far: 10000,
+                position: [3, 3, 3]
+              }}
+            >
+              <Scene />
+            </Canvas>
           </div>
         )}
       </div>
