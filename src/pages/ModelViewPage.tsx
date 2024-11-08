@@ -1,6 +1,7 @@
 import FilesUploader from '@/components/FilesUploader'
 import InstrumentsSidebar from '@/components/InstrumentsSidebar'
 import Scene from '@/components/Scene'
+import Toolbar from '@/components/Toolbar'
 import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
 import { setFaces, setReady, setVertices } from '@/redux/slices/modelSlice'
 import { Face } from '@/types/Face'
@@ -57,6 +58,7 @@ const ModelViewPage = () => {
             </Canvas>
           </div>
         )}
+        <Toolbar />
       </div>
 
       {filesUploaderOpen && (
