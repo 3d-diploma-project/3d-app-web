@@ -16,7 +16,7 @@ const CustomGeometry: FC = () => {
       <mesh>
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" array={position} itemSize={3} count={position.length / 3} />
-          <bufferAttribute attach="index" array={indexArray} itemSize={1} count={indexArray.length} />
+          <bufferAttribute array={indexArray} itemSize={1} count={indexArray.length} />
         </bufferGeometry>
 
         <meshBasicMaterial />
