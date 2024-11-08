@@ -4,7 +4,10 @@ import { Vertex } from '../types/Vertex'
 type ParsedLine = string[]
 
 function parseLines(input: string): ParsedLine[] {
-  return input.split('\n').map((line) => line.replace(/\s+/g, ' ').trim().split(' '))
+  return input
+    .split('\n')
+    .map((line) => line.replace(/\s+/g, ' ').trim().split(' '))
+    .filter((line) => line.every((field) => !isNaN(parseFloat(field))))
 }
 
 function filterByLength(parsedLines: ParsedLine[], length: number): ParsedLine[] {
