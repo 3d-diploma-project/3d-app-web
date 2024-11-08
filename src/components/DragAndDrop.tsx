@@ -59,7 +59,7 @@ const DragAndDrop = ({ onFilesLoad, accept, hint, title = '', className = '' }: 
       onDragStart={onDragOverHandler}
       onDragLeave={onDragLeaveHandler}
       onDrop={onDropHandler}
-      className={cn('flex flex-col justify-between items-center rounded-3xl bg-app-blue-light pt-3', className, {
+      className={cn('flex flex-col items-center justify-between rounded-3xl bg-app-blue-light pt-3', className, {
         'border-2 border-dashed border-app-blue': drag
       })}
     >
