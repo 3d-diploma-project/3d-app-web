@@ -14,7 +14,8 @@ const NodeDisplay: FC<NodeType> = ({ positions }) => {
       const y = positions[i + 1]
       const z = positions[i + 2]
       points.push({
-        position: new THREE.Vector3(x, y, z)
+        position: new THREE.Vector3(x, y, z),
+        id: i
       })
     }
     return points
@@ -23,7 +24,7 @@ const NodeDisplay: FC<NodeType> = ({ positions }) => {
   return (
     <>
       {indexedPositions.map((point, idx) => (
-        <mesh key={idx} scale={0.005} position={point.position}>
+        <mesh scale={0.005} position={point.position} key={point.id}>
           <sphereGeometry />
           <meshBasicMaterial color="blue" />
           <Html distanceFactor={6} center className="group -space-x-0.5 -space-y-2">

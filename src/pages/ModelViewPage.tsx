@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import FilesUploader from '@/components/FilesUploader'
 import InstrumentsSidebar from '@/components/InstrumentsSidebar'
 import Scene from '@/components/Scene'
@@ -8,6 +6,7 @@ import { setFaces, setReady, setVertices } from '@/redux/slices/modelSlice'
 import { Face } from '@/types/Face'
 import { Vertex } from '@/types/Vertex'
 import { Canvas } from '@react-three/fiber'
+import { useState } from 'react'
 import { GrPowerReset } from 'react-icons/gr'
 import { IoMove } from 'react-icons/io5'
 import { MdDelete } from 'react-icons/md'
