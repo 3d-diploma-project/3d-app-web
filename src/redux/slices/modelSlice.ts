@@ -9,6 +9,8 @@ export interface ModelState {
   isReady: boolean
   facesFileName: string
   verticesFileName: string
+  facesLoaded: boolean
+  verticesLoaded: boolean
 }
 
 export const initialState: ModelState = {
@@ -16,7 +18,9 @@ export const initialState: ModelState = {
   vertices: [],
   isReady: false,
   facesFileName: '',
-  verticesFileName: ''
+  verticesFileName: '',
+  facesLoaded: false,
+  verticesLoaded: false
 }
 
 export const modelSlice = createSlice({
@@ -27,11 +31,13 @@ export const modelSlice = createSlice({
       const { faces, fileName } = action.payload
       state.faces = faces
       state.facesFileName = fileName
+      state.facesLoaded = true
     },
     setVertices: (state, action: PayloadAction<{ vertices: Vertex[]; fileName: string }>) => {
       const { vertices, fileName } = action.payload
       state.vertices = vertices
       state.verticesFileName = fileName
+      state.verticesLoaded = true
     },
     resetModel: () => initialState,
     setReady: (state, action: PayloadAction<boolean>) => {

@@ -10,10 +10,18 @@ interface DragAndDropProps {
   hint: string
   title?: string
   className?: string
+  buttonClassName?: string
   accept?: string
 }
 
-const DragAndDrop = ({ onFilesLoad, accept, hint, title = '', className = '' }: DragAndDropProps) => {
+const DragAndDrop = ({
+  onFilesLoad,
+  accept,
+  hint,
+  title = '',
+  className = '',
+  buttonClassName = ''
+}: DragAndDropProps) => {
   const [drag, setDrag] = useState(false)
   const fileInput = useRef<HTMLInputElement>(null)
 
@@ -77,7 +85,7 @@ const DragAndDrop = ({ onFilesLoad, accept, hint, title = '', className = '' }: 
         <IoCloudUploadOutline className="text-2xl" />
         <p className="text-center">{hint}</p>
       </div>
-      <Button onClick={onBrowseButtonClick} size={'icon'}>
+      <Button onClick={onBrowseButtonClick} size={'icon'} className={buttonClassName}>
         <FiPlus className="text-2xl" />
       </Button>
     </form>

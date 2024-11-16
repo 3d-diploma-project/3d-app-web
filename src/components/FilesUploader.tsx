@@ -4,12 +4,15 @@ import DragAndDrop from '@/components/DragAndDrop'
 import OutsideClickHandler from '@/components/OutsideClickHandler'
 import { Button } from '@/components/ui/button'
 import { parseFaces, parseVertices } from '@/lib/parser'
+import { cn } from '@/lib/utils'
 import { Face } from '@/types/Face'
 import { Vertex } from '@/types/Vertex'
 
 interface FilesUploaderProps {
   verticesFileName: string
+  verticesValid: boolean
   facesFileName: string
+  facesValid: boolean
   disableCreateModelButton: boolean
   closeModal: () => void
   onFacesLoad: (faces: Face[], fileName: string) => void
@@ -19,7 +22,9 @@ interface FilesUploaderProps {
 
 const FilesUploader = ({
   verticesFileName,
+  verticesValid,
   facesFileName,
+  facesValid,
   disableCreateModelButton,
   closeModal,
   onFacesLoad,
@@ -61,16 +66,22 @@ const FilesUploader = ({
         <div className="grid aspect-video max-w-7xl grid-rows-[1fr,auto] gap-5 rounded-3xl bg-white p-5 md:gap-10 md:p-10">
           <div className="flex flex-col items-center justify-center gap-5 md:flex-row md:gap-10">
             <DragAndDrop
-              hint={verticesHint}
+              hint={verticesValid ? verticesHint : 'Неможливо зчитати таблицю координат'}
               onFilesLoad={onVerticesLoadHandler}
               title={t('filesUploader.verticesFile')}
-              className="aspect-square w-64 p-5"
+              className={cn('aspect-square w-64 border border-transparent p-5', {
+                'border-red-500 bg-red-200': !verticesValid
+              })}
+              buttonClassName={cn({ 'bg-black text-white': !verticesValid })}
             />
             <DragAndDrop
-              hint={facesHint}
+              hint={facesValid ? facesHint : 'Неможливо зчитати матрицю індексів'}
               onFilesLoad={onFacesLoadHandler}
               title={t('filesUploader.facesFile')}
-              className="aspect-square w-64 p-5"
+              className={cn('aspect-square w-64 border border-transparent p-5', {
+                'border-red-500 bg-red-200': !facesValid
+              })}
+              buttonClassName={cn({ 'bg-black text-white': !facesValid })}
             />
           </div>
           <div className="flex items-center justify-end">

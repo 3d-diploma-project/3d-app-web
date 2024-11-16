@@ -2,6 +2,8 @@ import FilesUploader from '@/components/FilesUploader'
 import { fireEvent, render, screen } from '@testing-library/react'
 
 const propsMock = {
+  verticesValid: true,
+  facesValid: true,
   verticesFileName: 'vertices.txt',
   facesFileName: 'faces.txt',
   disableCreateModelButton: true,
