@@ -14,7 +14,9 @@ import { MdDelete } from 'react-icons/md'
 import { PiCopySimpleLight, PiCursorFill, PiResize } from 'react-icons/pi'
 
 const ModelViewPage = () => {
-  const { isReady, facesFileName, verticesFileName, faces, vertices } = useAppSelector((store) => store.model)
+  const { isReady, facesFileName, verticesFileName, faces, vertices, verticesLoaded, facesLoaded } = useAppSelector(
+    (store) => store.model
+  )
   const [filesUploaderOpen, setFilesUploaderOpen] = useState(!isReady)
   const dispatch = useAppDispatch()
 
@@ -54,9 +56,11 @@ const ModelViewPage = () => {
 
       {filesUploaderOpen && (
         <FilesUploader
+          verticesValid={!verticesLoaded || vertices.length > 1}
           verticesFileName={verticesFileName}
           facesFileName={facesFileName}
-          disableCreateModelButton={isReady}
+          facesValid={!facesLoaded || faces.length > 1}
+          disableCreateModelButton={!vertices.length || !faces.length}
           closeModal={closeModal}
           onFacesLoad={onFacesLoad}
           onVerticesLoad={onVerticesLoad}
