@@ -11,6 +11,7 @@ export interface ModelState {
   verticesFileName: string
   facesLoaded: boolean
   verticesLoaded: boolean
+  displayNodeIndices: boolean
 }
 
 export const initialState: ModelState = {
@@ -20,7 +21,8 @@ export const initialState: ModelState = {
   facesFileName: '',
   verticesFileName: '',
   facesLoaded: false,
-  verticesLoaded: false
+  verticesLoaded: false,
+  displayNodeIndices: false
 }
 
 export const modelSlice = createSlice({
@@ -42,10 +44,13 @@ export const modelSlice = createSlice({
     resetModel: () => initialState,
     setReady: (state, action: PayloadAction<boolean>) => {
       state.isReady = action.payload
+    },
+    setDisplayNodeIndices: (state, action: PayloadAction<boolean>) => {
+      state.displayNodeIndices = action.payload
     }
   }
 })
 
-export const { setFaces, setVertices, resetModel, setReady } = modelSlice.actions
+export const { setFaces, setVertices, resetModel, setReady, setDisplayNodeIndices } = modelSlice.actions
 
 export default modelSlice.reducer
