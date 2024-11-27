@@ -1,4 +1,11 @@
-import reducer, { initialState, resetModel, setFaces, setReady, setVertices } from '@/redux/slices/modelSlice'
+import reducer, {
+  initialState,
+  resetModel,
+  setDisplayNodeIndices,
+  setFaces,
+  setReady,
+  setVertices
+} from '@/redux/slices/modelSlice'
 import { describe, expect, it } from 'vitest'
 
 const facesFileNameMock = 'faces.txt'
@@ -43,5 +50,12 @@ describe('modelSlice', () => {
     const state = reducer(initialState, action)
 
     expect(state.isReady).toEqual(true)
+  })
+
+  it('should set displayNodeIndices correctly with setDisplayNodeIndices', () => {
+    const action = setDisplayNodeIndices(true)
+    const state = reducer(initialState, action)
+
+    expect(state.displayNodeIndices).toEqual(true)
   })
 })
