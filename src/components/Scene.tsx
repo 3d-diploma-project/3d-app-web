@@ -4,7 +4,7 @@ import CustomGeometry from './CustomGeometry'
 const Scene = () => {
   return (
     <>
-      <OrbitControls enablePan={false} />
+      <OrbitControls enablePan={true} />
 
       <Center>
         <CustomGeometry />

@@ -14,10 +14,10 @@ const NodeInformation: FC<NodeInformationProps> = ({ id, position, scale }) => {
         {id}
       </div>
 
-      <div className="absolute flex h-2 max-h-1 w-4 max-w-2 select-none flex-col gap-[0.5px] rounded-[1px] bg-black/50 text-center text-[0.5px] font-bold text-white opacity-0 group-hover:opacity-100">
-        <div>X: {position.x}</div>
-        <div>Y: {position.y}</div>
-        <div>Z: {position.z}</div>
+      <div className="absolute flex h-2 max-h-1 w-4 max-w-2 select-none items-center justify-center gap-[0.5px] rounded-[1px] bg-black/50 text-center text-[1px] font-bold text-white group-hover:opacity-100">
+        <div>X: {position.x.toFixed(1)}</div>
+        <div>Y: {position.y.toFixed(1)}</div>
+        <div>Z: {position.z.toFixed(1)}</div>
       </div>
     </div>
   )
