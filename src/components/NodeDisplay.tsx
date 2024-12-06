@@ -1,43 +1,66 @@
+import NodeInformation from '@/components/NodeInformation'
 import { Html } from '@react-three/drei'
-import { FC, useMemo } from 'react'
+import { FC, useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 
 interface NodeType {
   positions: Float32Array
+  meshSize: number
 }
 
-const NodeDisplay: FC<NodeType> = ({ positions }) => {
+const NodeDisplay: FC<NodeType> = ({ positions, meshSize }) => {
+  const [isClicked, setIsClicked] = useState<number | null>(null)
+  const sphereRef = useRef<(THREE.Mesh | null)[]>([])
+
+  const getScale = (size: number) => {
+    const minMeshSize = 0.01
+    const maxMeshSize = 1
+    const minScale = 0.0005
+    const maxScale = 0.03
+
+    const normalizedSize = (size - minMeshSize) / (maxMeshSize - minMeshSize)
+    return normalizedSize * (maxScale - minScale) + minScale
+  }
+
   const indexedPositions = useMemo(() => {
     const points = []
+
     for (let i = 0; i < positions.length; i += 3) {
       const x = positions[i]
       const y = positions[i + 1]
       const z = positions[i + 2]
+
       points.push({
         position: new THREE.Vector3(x, y, z),
-        id: i
+        id: i,
+        scale: getScale(meshSize)
       })
     }
     return points
-  }, [positions])
+  }, [positions, meshSize])
+
+  const handleColorChange = (id: number) => {
+    setIsClicked(id)
+  }
 
   return (
     <>
       {indexedPositions.map((point, idx) => (
-        <mesh scale={0.005} position={point.position} key={point.id}>
+        <mesh
+          position={point.position}
+          key={point.id}
+          scale={point.scale}
+          onClick={() => handleColorChange(point.id)}
+          ref={(child) => (sphereRef.current[idx] = child)}
+        >
           <sphereGeometry />
           <meshBasicMaterial color="blue" />
-          <Html distanceFactor={6} center className="group -space-x-0.5 -space-y-2">
-            <div className="peer relative size-1 select-none rounded-full bg-black bg-opacity-30 text-center text-[2px] leading-[4px] text-white">
-              {idx}
-            </div>
 
-            <div className="absolute flex h-2 max-h-1 w-4 max-w-2 select-none flex-col gap-[0.5px] rounded-[1px] bg-black/50 text-center text-[0.5px] font-bold text-white opacity-0 group-hover:opacity-100">
-              <div>X: {point.position.x}</div>
-              <div>Y: {point.position.y}</div>
-              <div>Z: {point.position.z}</div>
-            </div>
-          </Html>
+          {isClicked === point.id && (
+            <Html distanceFactor={6} center>
+              <NodeInformation id={point.id} position={point.position} scale={point.scale} />
+            </Html>
+          )}
         </mesh>
       ))}
     </>
