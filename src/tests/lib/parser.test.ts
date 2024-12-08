@@ -142,6 +142,16 @@ describe('parseVertices', () => {
     expect(parseVertices(input)).toEqual(expected)
   })
 
+  it('parses vertices with no index', () => {
+    const input = '1 1 0\n2 5 0\n5 3 0\n'
+    const expected = [
+      { index: 1, x: 1, y: 1, z: 0 },
+      { index: 2, x: 2, y: 5, z: 0 },
+      { index: 3, x: 5, y: 3, z: 0 }
+    ]
+    expect(parseVertices(input)).toEqual(expected)
+  })
+
   it('return [] if no parser is matching', () => {
     const input = '123456789'
     const expected = [] as Vertex[]
@@ -159,6 +169,15 @@ describe('parseFaces', () => {
   it('parses ansys faces', () => {
     const input = '1 1 1 1 0 1 224 225 226 226 227 227 227 227'
     const expected = [{ index: 1, vertex1: 224, vertex2: 225, vertex3: 226, vertex4: 227 }]
+    expect(parseFaces(input)).toEqual(expected)
+  })
+
+  it('parses faces with no index', () => {
+    const input = '1 2 3 4\n5 2 1 4'
+    const expected = [
+      { index: 1, vertex1: 1, vertex2: 2, vertex3: 3, vertex4: 4 },
+      { index: 2, vertex1: 5, vertex2: 2, vertex3: 1, vertex4: 4 }
+    ]
     expect(parseFaces(input)).toEqual(expected)
   })
 
