@@ -1,4 +1,5 @@
 import { Face } from '@/types/Face'
+import { ModelPhysicalQuantity } from '@/types/ModelPhysicalQuantity.ts'
 import { Vertex } from '@/types/Vertex'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
@@ -12,6 +13,8 @@ export interface ModelState {
   facesLoaded: boolean
   verticesLoaded: boolean
   displayNodeIndices: boolean
+  stress: ModelPhysicalQuantity | null
+  stressLoaded: boolean
 }
 
 export const initialState: ModelState = {
@@ -22,7 +25,9 @@ export const initialState: ModelState = {
   verticesFileName: '',
   facesLoaded: false,
   verticesLoaded: false,
-  displayNodeIndices: false
+  displayNodeIndices: false,
+  stress: null,
+  stressLoaded: false
 }
 
 export const modelSlice = createSlice({
@@ -41,6 +46,12 @@ export const modelSlice = createSlice({
       state.verticesFileName = fileName
       state.verticesLoaded = true
     },
+    setStress: (state, action: PayloadAction<{ stress: ModelPhysicalQuantity; fileName: string }>) => {
+      const { stress, fileName } = action.payload
+      state.stress = stress
+      state.stressFileName = fileName
+      state.stressLoaded = true
+    },
     resetModel: () => initialState,
     setReady: (state, action: PayloadAction<boolean>) => {
       state.isReady = action.payload
@@ -51,6 +62,6 @@ export const modelSlice = createSlice({
   }
 })
 
-export const { setFaces, setVertices, resetModel, setReady, setDisplayNodeIndices } = modelSlice.actions
+export const { setFaces, setVertices, resetModel, setReady, setDisplayNodeIndices, setStress } = modelSlice.actions
 
 export default modelSlice.reducer
