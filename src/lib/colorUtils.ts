@@ -1,7 +1,7 @@
 import { Legend } from '@/types/Legend.ts'
 
 export const COLOR_ARRAY_SIZE = 7
-export const COLORS: number[][] = buildColorsForLegend()
+export const COLORS: number[][] = buildColorsForLegend(COLOR_ARRAY_SIZE)
 
 export function generateLegend(minValue: number, maxValue: number): Legend[] {
   const legend: Legend[] = []
@@ -46,11 +46,11 @@ function getColorFromLegend(value: number, legend: Legend[]): number[] {
   console.error("Can't find color for value in legend.")
 }
 
-function buildColorsForLegend() {
-  const jump = 0.66 / COLOR_ARRAY_SIZE
+export function buildColorsForLegend(size) {
+  const jump = 0.66 / size
   const colors: number[][] = []
 
-  for (let i = 0; i < COLOR_ARRAY_SIZE; i++) {
+  for (let i = 0; i < size; i++) {
     colors[i] = HSVtoRGB(jump * i, 0.8, 0.8)
   }
 

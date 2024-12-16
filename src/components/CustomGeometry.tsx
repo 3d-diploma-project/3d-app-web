@@ -4,7 +4,7 @@ import { FC, useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 
 import NodeDisplay from '@/components/NodeDisplay'
-import { generateColorArray } from '@/lib/colorsUtils.ts'
+import { generateColorArray } from '@/lib/colorUtils.ts'
 import { generateFaceIndexArray, generateVertexPositions } from '@/lib/utils'
 import { ModelPhysicalQuantity } from '@/types/ModelPhysicalQuantity.ts'
 

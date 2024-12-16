@@ -1,14 +1,14 @@
 import { Button } from '@/components/ui/button'
 import { useRef } from 'react'
 
-interface ButtonWithTitleProps {
+interface FileUploadButtonProps {
   title?: string
   buttonText: string
   variant?: 'default' | 'ghost'
   onFileSelect?: (file: File) => void
 }
 
-const FileUploadButton = ({ title, buttonText, onFileSelect, variant = 'default' }: ButtonWithTitleProps) => {
+const FileUploadButton = ({ title, buttonText, onFileSelect, variant = 'default' }: FileUploadButtonProps) => {
   const inputFile = useRef(null)
 
   const handleFileUpload = (e) => {
@@ -26,7 +26,13 @@ const FileUploadButton = ({ title, buttonText, onFileSelect, variant = 'default'
 
   return (
     <div className="space-y-1">
-      <input style={{ display: 'none' }} ref={inputFile} onChange={handleFileUpload} type="file" />
+      <input
+        data-testid="file-input"
+        style={{ display: 'none' }}
+        ref={inputFile}
+        onChange={handleFileUpload}
+        type="file"
+      />
       {title && <p className="font-semibold">{title}</p>}
       <Button variant={variant} onClick={onButtonClick} size="sm" className="w-full">
         {buttonText}
