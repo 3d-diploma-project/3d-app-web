@@ -1,0 +1,21 @@
+{
+  "toolbarSections": {
+    "coordinates": "Koordinaten",
+    "rotation": "Drehung",
+    "background": "Hintergrundfarbe",
+    "modelColor": "Modellfarbe",
+    "nodesColor": "Knotenfarbe",
+    "switchSection": {
+      "nodes": "Knoten",
+      "nodeNumbers": "Knotennummern",
+      "legend": "Legende"
+    },
+    "buttonsSection": {
+      "nodeStress": "Spannungen in den Knoten",
+      "fileUpload": "Datei hochladen",
+      "nodeDisplacement": "Verschiebungen in den Knoten",
+      "nodeForces": "Aufgebrachte Kräfte",
+      "nodeFixes": "Fest eingespannte Knoten"
+    }
+  }
+}

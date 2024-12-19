@@ -1,0 +1,21 @@
+{
+  "toolbarSections": {
+    "coordinates": "Координати",
+    "rotation": "Обертання",
+    "background": "Колір фону",
+    "modelColor": "Колір моделі",
+    "nodesColor": "Колір вузлів",
+    "switchSection": {
+      "nodes": "Вузли",
+      "nodeNumbers": "Номери вузлів",
+      "legend": "Легенда"
+    },
+    "buttonsSection": {
+      "nodeStress": "Напруження у вузлах",
+      "fileUpload": "Завантажити файл",
+      "nodeDisplacement": "Переміщення у вузлах",
+      "nodeForces": "Прикладені сили",
+      "nodeFixes": "Закріплені вузли"
+    }
+  }
+}

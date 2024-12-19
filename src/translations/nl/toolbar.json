@@ -1,0 +1,21 @@
+{
+  "toolbarSections": {
+    "coordinates": "Coördinaten",
+    "rotation": "Rotatie",
+    "background": "Achtergrondkleur",
+    "modelColor": "Modelkleur",
+    "nodesColor": "Knooppuntkleur",
+    "switchSection": {
+      "nodes": "Knooppunten",
+      "nodeNumbers": "Knooppuntnummers",
+      "legend": "Legenda"
+    },
+    "buttonsSection": {
+      "nodeStress": "Spanningen in de knooppunten",
+      "fileUpload": "Bestand uploaden",
+      "nodeDisplacement": "Verplaatsingen in de knooppunten",
+      "nodeForces": "Aangelegde krachten",
+      "nodeFixes": "Vastgezette knooppunten"
+    }
+  }
+}
