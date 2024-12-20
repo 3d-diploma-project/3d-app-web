@@ -1,4 +1,11 @@
-import { parseAnsysFaces, parseDefaultFaces, parseDefaultVertices, parseFaces, parseVertices } from '@/lib/parser'
+import {
+  parseAnsysFaces,
+  parseDefaultFaces,
+  parseDefaultPhysicalQuantity,
+  parseDefaultVertices,
+  parseFaces,
+  parseVertices
+} from '@/lib/parser'
 import { Face } from '@/types/Face'
 import { Vertex } from '@/types/Vertex'
 import { describe, expect, it } from 'vitest'
@@ -185,5 +192,13 @@ describe('parseFaces', () => {
     const input = '98746554321'
     const expected = [] as Face[]
     expect(parseFaces(input)).toEqual(expected)
+  })
+})
+
+describe('parseDefaultPhysicalQuantity', () => {
+  it('parses default physical quantity', () => {
+    const input = '0.123 \n 1.234'
+    const expected = { values: [0.123, 1.234], min: 0.123, max: 1.234 }
+    expect(parseDefaultPhysicalQuantity(input)).toEqual(expected)
   })
 })

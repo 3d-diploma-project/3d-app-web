@@ -34,16 +34,6 @@ describe('DragAndDrop component', () => {
     expect(clickSpy).toHaveBeenCalled()
   })
 
-  it('should trigger file input on browse button click', () => {
-    const button = screen.getByRole('button')
-    const fileInput = screen.getByTestId('file-input')
-
-    const clickSpy = vi.spyOn(fileInput, 'click')
-
-    fireEvent.click(button)
-    expect(clickSpy).toHaveBeenCalled()
-  })
-
   it('should change border on drag events', () => {
     const form = screen.getByTestId('drop-zone')
 

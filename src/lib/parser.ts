@@ -1,4 +1,5 @@
 import { Face } from '@/types/Face'
+import { ModelPhysicalQuantity } from '@/types/ModelPhysicalQuantity.ts'
 import { Vertex } from '@/types/Vertex'
 
 type ParsedLine = string[]
@@ -101,4 +102,27 @@ export function isFacesWithNoIndex(input: string): boolean {
 
 export function isAnsysFaces(input: string): boolean {
   return hasValidLineFormat(input, 14)
+}
+
+export function parseDefaultPhysicalQuantity(input: string): ModelPhysicalQuantity {
+  let minValue = Number.MAX_VALUE
+  let maxValue = Number.MIN_VALUE
+
+  const values = filterByLength(parseLines(input), 1)
+    .map(([value]): number => Number(value))
+    .map((value) => {
+      if (minValue > value) {
+        minValue = value
+      }
+      if (maxValue < value) {
+        maxValue = value
+      }
+      return value
+    })
+
+  return {
+    values: values,
+    min: minValue,
+    max: maxValue
+  }
 }
