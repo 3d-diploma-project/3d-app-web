@@ -1,5 +1,5 @@
-import { Face } from '../types/Face'
-import { Vertex } from '../types/Vertex'
+import { Face } from '@/types/Face'
+import { Vertex } from '@/types/Vertex'
 
 type ParsedLine = string[]
 
@@ -21,11 +21,13 @@ function hasValidLineFormat(input: string, expectedLength: number): boolean {
 export function parseFaces(input: string): Face[] {
   if (isDefaultFaces(input)) return parseDefaultFaces(input)
   if (isAnsysFaces(input)) return parseAnsysFaces(input)
+  if (isFacesWithNoIndex(input)) return parseFacesWithNoIndex(input)
   return []
 }
 
 export function parseVertices(input: string): Vertex[] {
   if (isDefaultVertices(input)) return parseDefaultVertices(input)
+  if (isVerticesWithNoIndex(input)) return parseVerticesWithNoIndex(input)
   return []
 }
 
@@ -38,9 +40,28 @@ export function parseDefaultVertices(input: string): Vertex[] {
   }))
 }
 
+export function parseVerticesWithNoIndex(input: string): Vertex[] {
+  return filterByLength(parseLines(input), 3).map(([x, y, z], index) => ({
+    index: index + 1,
+    x: Number(x),
+    y: Number(y),
+    z: Number(z)
+  }))
+}
+
 export function parseDefaultFaces(input: string): Face[] {
   return filterByLength(parseLines(input), 5).map(([index, vertex1, vertex2, vertex3, vertex4]) => ({
     index: Number(index),
+    vertex1: Number(vertex1),
+    vertex2: Number(vertex2),
+    vertex3: Number(vertex3),
+    vertex4: Number(vertex4)
+  }))
+}
+
+export function parseFacesWithNoIndex(input: string): Face[] {
+  return filterByLength(parseLines(input), 4).map(([vertex1, vertex2, vertex3, vertex4], index) => ({
+    index: index + 1,
     vertex1: Number(vertex1),
     vertex2: Number(vertex2),
     vertex3: Number(vertex3),
@@ -66,8 +87,16 @@ export function isDefaultVertices(input: string): boolean {
   return hasValidLineFormat(input, 4)
 }
 
+export function isVerticesWithNoIndex(input: string): boolean {
+  return hasValidLineFormat(input, 3)
+}
+
 export function isDefaultFaces(input: string): boolean {
   return hasValidLineFormat(input, 5)
+}
+
+export function isFacesWithNoIndex(input: string): boolean {
+  return hasValidLineFormat(input, 4)
 }
 
 export function isAnsysFaces(input: string): boolean {
