@@ -8,6 +8,7 @@ import { Face } from '@/types/Face'
 import { Vertex } from '@/types/Vertex'
 import { Canvas } from '@react-three/fiber'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { GrPowerReset } from 'react-icons/gr'
 import { IoMove } from 'react-icons/io5'
 import { MdDelete } from 'react-icons/md'
@@ -33,13 +34,15 @@ const ModelViewPage = () => {
     setFilesUploaderOpen(false)
   }
 
+  const { t } = useTranslation()
+
   const buttonsData = [
-    { tooltip: 'select', icon: <PiCursorFill /> },
-    { tooltip: 'move', icon: <IoMove /> },
-    { tooltip: 'rotate', icon: <GrPowerReset /> },
-    { tooltip: 'scale', icon: <PiResize /> },
-    { tooltip: 'copy', icon: <PiCopySimpleLight /> },
-    { tooltip: 'delete', icon: <MdDelete /> }
+    { tooltip: t('instrumentsSidebar.sidebarHints.select'), icon: <PiCursorFill /> },
+    { tooltip: t('instrumentsSidebar.sidebarHints.move'), icon: <IoMove /> },
+    { tooltip: t('instrumentsSidebar.sidebarHints.rotate'), icon: <GrPowerReset /> },
+    { tooltip: t('instrumentsSidebar.sidebarHints.scale'), icon: <PiResize /> },
+    { tooltip: t('instrumentsSidebar.sidebarHints.copy'), icon: <PiCopySimpleLight /> },
+    { tooltip: t('instrumentsSidebar.sidebarHints.delete'), icon: <MdDelete /> }
   ]
 
   return (
