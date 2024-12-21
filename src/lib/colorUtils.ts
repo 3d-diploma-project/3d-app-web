@@ -24,8 +24,8 @@ export function generateColorArray(values: number[], minValue: number, maxValue:
   const legend: Legend[] = generateLegend(minValue, maxValue)
   const colors: number[] = []
 
-  for (let i = 0; i < values.length; i++) {
-    const colorsForValue = getColorFromLegend(values[i], legend)
+  for (const value of values) {
+    const colorsForValue = getColorFromLegend(value, legend)
 
     for (let j = 0; j < 4 * 3; j++) {
       colors.push(colorsForValue[0], colorsForValue[1], colorsForValue[2])
@@ -44,14 +44,16 @@ function getColorFromLegend(value: number, legend: Legend[]): number[] {
   }
 
   console.error("Can't find color for value in legend.")
+
+  return []
 }
 
-export function buildColorsForLegend(size) {
+export function buildColorsForLegend(size: number) {
   const jump = 0.66 / size
   const colors: number[][] = []
 
   for (let i = 0; i < size; i++) {
-    colors[i] = HSVtoRGB(jump * i, 0.8, 0.8)
+    colors[i] = HSVtoRGB(jump * i, 0.8, 0.8) || []
   }
 
   return colors
