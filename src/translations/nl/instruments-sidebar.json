@@ -1,0 +1,10 @@
+{
+  "sidebarHints": {
+    "select": "Selecteren",
+    "move": "Verplaatsen",
+    "rotate": "Roteren",
+    "scale": "Schalen",
+    "copy": "Kopiëren",
+    "delete": "Verwijderen"
+  }
+}
