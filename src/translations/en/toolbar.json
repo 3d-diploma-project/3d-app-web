@@ -1,0 +1,21 @@
+{
+  "toolbarSections": {
+    "coordinates": "Coordinates",
+    "rotation": "Rotation",
+    "background": "Background color",
+    "modelColor": "Model color",
+    "nodesColor": "Node color",
+    "switchSection": {
+      "nodes": "Nodes",
+      "nodeNumbers": "Node numbers",
+      "legend": "Legend"
+    },
+    "buttonsSection": {
+      "nodeStress": "Node Stress",
+      "fileUpload": "Upload file",
+      "nodeDisplacement": "Displacement in nodes",
+      "nodeForces": "Applied forces",
+      "nodeFixes": "Fixed nodes"
+    }
+  }
+}
