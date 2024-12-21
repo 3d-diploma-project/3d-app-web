@@ -1,5 +1,6 @@
 # To run the project locally:
 
+- install Node.js v20.15.1
 - `git clone` the project
 - install dependencies: `npm i`
 - run the project: `npm run dev`
