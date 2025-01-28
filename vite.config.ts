@@ -23,6 +23,11 @@ const exclude = [
   '**/setup.ts',
   '**/store.ts'
 ]
+
+const ReactCompilerConfig = {
+  target: '18' // '17' | '18' | '19'
+}
+
 export default defineConfig({
   resolve: {
     alias: {
@@ -30,7 +35,15 @@ export default defineConfig({
     }
   },
 
-  plugins: [react(), glsl(), restart({ restart: ['../public/**'] })],
+  plugins: [
+    react({
+      babel: {
+        plugins: [['babel-plugin-react-compiler', ReactCompilerConfig]]
+      }
+    }),
+    glsl(),
+    restart({ restart: ['../public/**'] })
+  ],
   test: {
     watch: false,
     globals: true,
