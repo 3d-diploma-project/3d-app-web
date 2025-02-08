@@ -23,27 +23,13 @@ const exclude = [
   '**/setup.ts',
   '**/store.ts'
 ]
-
-const ReactCompilerConfig = {
-  target: '18' // '17' | '18' | '19'
-}
-
 export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')
     }
   },
-
-  plugins: [
-    react({
-      babel: {
-        plugins: [['babel-plugin-react-compiler', ReactCompilerConfig]]
-      }
-    }),
-    glsl(),
-    restart({ restart: ['../public/**'] })
-  ],
+  plugins: [react(), glsl(), restart({ restart: ['../public/**'] })],
   test: {
     watch: false,
     globals: true,
@@ -54,5 +40,9 @@ export default defineConfig({
       reporter: ['lcov', 'text'],
       exclude
     }
+  },
+  base: './',
+  build: {
+    outDir: 'dist-react'
   }
 })

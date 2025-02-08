@@ -11,7 +11,7 @@ import { ModelPhysicalQuantity } from '@/types/ModelPhysicalQuantity.ts'
 const CustomGeometry: FC = () => {
   const vertices = useAppSelector((store) => store.model.vertices)
   const faces = useAppSelector((store) => store.model.faces)
-  const stress: ModelPhysicalQuantity = useAppSelector((store) => store.model.stress)
+  const stress: ModelPhysicalQuantity | null = useAppSelector((store) => store.model.stress)
   const stressLoaded = useAppSelector((store) => store.model.stressLoaded)
 
   const { displayNodeIndices } = useAppSelector((store) => store.model)
