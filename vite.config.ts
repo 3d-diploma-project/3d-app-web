@@ -19,6 +19,7 @@ const exclude = [
   './src/App.tsx',
   './src/vite-env.d.ts',
   './src/tests/setup.ts',
+  './src/electron/main.ts',
   './vite.config.ts',
   '**/setup.ts',
   '**/store.ts'
