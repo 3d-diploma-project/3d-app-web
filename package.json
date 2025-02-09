@@ -1,7 +1,8 @@
 {
-  "name": "3d-app-web",
+  "author": "CMPS, KhPI",
+  "name": "Tetrahedron",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "main": "dist-electron/main.js",
   "scripts": {
