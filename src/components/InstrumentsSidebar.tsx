@@ -14,7 +14,7 @@ interface InstrumentsSidebarProps {
 const InstrumentsSidebar = ({ buttonsData }: InstrumentsSidebarProps) => {
   const [activeButtonIndex, setActiveButtonIndex] = useState(0)
 
-  const buttonClickHandler = (button: ButtonData, buttonIndex: number) => {
+  const buttonClickHandler = (_button: ButtonData, buttonIndex: number) => {
     setActiveButtonIndex(buttonIndex)
   }
 
