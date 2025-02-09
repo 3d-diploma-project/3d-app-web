@@ -20,6 +20,7 @@ export function generateLegend(minValue: number, maxValue: number): Legend[] {
   return legend
 }
 
+//This one probably
 export function generateColorArray(values: number[], minValue: number, maxValue: number): Float32Array {
   const legend: Legend[] = generateLegend(minValue, maxValue)
   const colors: number[] = []
@@ -53,8 +54,9 @@ export function buildColorsForLegend(size: number) {
   const colors: number[][] = []
 
   for (let i = 0; i < size; i++) {
-    colors[i] = HSVtoRGB(jump * i, 0.8, 0.8) || []
+    colors[size - i - 1] = HSVtoRGB(jump * i, 0.8, 0.8) || []
   }
+  console.log(colors)
 
   return colors
 }
