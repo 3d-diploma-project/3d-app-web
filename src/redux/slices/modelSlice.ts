@@ -15,6 +15,7 @@ export interface ModelState {
   displayNodeIndices: boolean
   stress: ModelPhysicalQuantity | null
   stressLoaded: boolean
+  stressFileName: string | null
 }
 
 export const initialState: ModelState = {
@@ -27,7 +28,8 @@ export const initialState: ModelState = {
   verticesLoaded: false,
   displayNodeIndices: false,
   stress: null,
-  stressLoaded: false
+  stressLoaded: false,
+  stressFileName: null
 }
 
 export const modelSlice = createSlice({
