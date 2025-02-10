@@ -12,6 +12,9 @@ const exclude = [
   ...configDefaults.exclude,
   '**/translations/**',
   '**/ui/**',
+  '**/dist/**',
+  '**/dist-electron/**',
+  '**/dist-react/**',
   '*config.js',
   '*config.ts',
   './vite-env.d.ts',
@@ -19,6 +22,7 @@ const exclude = [
   './src/App.tsx',
   './src/vite-env.d.ts',
   './src/tests/setup.ts',
+  './src/electron/main.ts',
   './vite.config.ts',
   '**/setup.ts',
   '**/store.ts'
@@ -29,7 +33,6 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src')
     }
   },
-
   plugins: [react(), glsl(), restart({ restart: ['../public/**'] })],
   test: {
     watch: false,
@@ -41,5 +44,9 @@ export default defineConfig({
       reporter: ['lcov', 'text'],
       exclude
     }
+  },
+  base: './',
+  build: {
+    outDir: 'dist-react'
   }
 })
