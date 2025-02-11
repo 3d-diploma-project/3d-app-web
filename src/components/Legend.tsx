@@ -1,6 +1,6 @@
 import LegendItem from '@/components/LegendItem'
 import { generateLegend } from '@/lib/colorUtils'
-import { generateDiapasons } from '@/lib/legendUtils'
+
 import useGenerateColor from '@/lib/useGenerateColor'
 
 const Legend = () => {
@@ -12,8 +12,8 @@ const Legend = () => {
 
   return (
     <div className="absolute left-0 top-[20%] z-10 flex w-full flex-row justify-center gap-1">
-      {generateDiapasons(legend).map((item) => (
-        <LegendItem color={item.color} diapason={item.value} />
+      {legend.map((item) => (
+        <LegendItem color={item.color} diapason={item.minValueForColor} />
       ))}
     </div>
   )
