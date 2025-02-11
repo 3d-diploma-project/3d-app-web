@@ -11,9 +11,9 @@ const Legend = () => {
   const legend = generateLegend(stress.min, stress.max)
 
   return (
-    <div className="absolute left-0 top-[20%] z-10 flex w-full flex-row justify-center gap-1">
+    <div className="absolute z-10 ml-44 flex flex-col justify-center gap-1">
       {legend.map((item) => (
-        <LegendItem color={item.color} diapason={item.minValueForColor} />
+        <LegendItem color={item.color} diapason={item.minValueForColor} key={item.minValueForColor} />
       ))}
     </div>
   )

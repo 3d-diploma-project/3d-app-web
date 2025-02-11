@@ -50,6 +50,9 @@ const ModelViewPage = () => {
     <>
       <div className="relative flex items-center justify-between">
         <InstrumentsSidebar buttonsData={buttonsData} />
+
+        <Legend />
+
         {isReady && (
           <div data-testid="experience" className="fixed left-0 top-0 z-0 h-dvh w-full overflow-hidden">
             <Canvas
@@ -62,8 +65,6 @@ const ModelViewPage = () => {
             >
               <Scene />
             </Canvas>
-
-            <Legend />
           </div>
         )}
 
