@@ -1,4 +1,5 @@
 export type Legend = {
-  minValueForColor: number
+  diapasonStart: number
+  diapasonEnd: number
   color: number[]
 }

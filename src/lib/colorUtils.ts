@@ -10,17 +10,19 @@ export function generateLegend(minValue: number, maxValue: number): Legend[] {
   const chunkSize: number = diapason / COLOR_ARRAY_SIZE
 
   for (let i = 0; i < COLOR_ARRAY_SIZE; i++) {
-    const minValueForColor = minValue + chunkSize * i
+    const diapasonStart = minValue + chunkSize * i
+    const diapasonEnd = minValue + chunkSize * (i + 1)
     legend[i] = {
-      minValueForColor,
+      diapasonStart,
+      diapasonEnd,
       color: COLORS[i]
     }
   }
-
   return legend
 }
 
-//This one probably
+export function legendValues() {}
+
 export function generateColorArray(values: number[], minValue: number, maxValue: number): Float32Array {
   const legend: Legend[] = generateLegend(minValue, maxValue)
   const colors: number[] = []
@@ -39,7 +41,7 @@ export function generateColorArray(values: number[], minValue: number, maxValue:
 function getColorFromLegend(value: number, legend: Legend[]): number[] {
   for (let i = legend.length - 1; i >= 0; i--) {
     const legendItem = legend[i]
-    if (value >= legendItem.minValueForColor) {
+    if (value >= legendItem.diapasonStart) {
       return legendItem.color
     }
   }
@@ -56,7 +58,6 @@ export function buildColorsForLegend(size: number) {
   for (let i = 0; i < size; i++) {
     colors[size - i - 1] = HSVtoRGB(jump * i, 0.8, 0.8) || []
   }
-  console.log(colors)
 
   return colors
 }

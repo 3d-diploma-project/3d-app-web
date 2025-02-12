@@ -1,11 +1,9 @@
-import { useAppSelector } from '@/hooks/use-redux'
 import { generateColorArray } from '@/lib/colorUtils'
-import { ModelPhysicalQuantity } from '@/types/ModelPhysicalQuantity'
+import useStressUtils from '@/lib/useStressUtils'
 import { useEffect, useState } from 'react'
 
 export default function useGenerateColor() {
-  const stress: ModelPhysicalQuantity = useAppSelector((store) => store.model.stress)!
-  const stressLoaded = useAppSelector((store) => store.model.stressLoaded)
+  const { stress, stressLoaded } = useStressUtils()
 
   const [color, setColor] = useState(new Float32Array())
 
@@ -15,5 +13,5 @@ export default function useGenerateColor() {
     }
   }, [stress, stressLoaded])
 
-  return { color, stressLoaded, stress }
+  return { color }
 }

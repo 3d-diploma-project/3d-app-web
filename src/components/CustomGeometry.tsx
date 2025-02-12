@@ -5,6 +5,7 @@ import * as THREE from 'three'
 
 import NodeDisplay from '@/components/NodeDisplay'
 import useGenerateColor from '@/lib/useGenerateColor'
+import useStressUtils from '@/lib/useStressUtils'
 import { generateFaceIndexArray, generateVertexPositions } from '@/lib/utils'
 
 const CustomGeometry: FC = () => {
@@ -22,7 +23,9 @@ const CustomGeometry: FC = () => {
   const position = generateVertexPositions(vertices)
   const indexArray = generateFaceIndexArray(faces)
 
-  const { color, stressLoaded } = useGenerateColor()
+  const { stressLoaded } = useStressUtils()
+
+  const { color } = useGenerateColor()
 
   return (
     <>
