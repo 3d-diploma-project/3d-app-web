@@ -1,6 +1,6 @@
 import { Legend } from '@/types/Legend.ts'
 
-export const COLOR_ARRAY_SIZE = 7
+export const COLOR_ARRAY_SIZE = 15
 export const COLORS: number[][] = buildColorsForLegend(COLOR_ARRAY_SIZE)
 
 export function generateLegend(minValue: number, maxValue: number): Legend[] {
