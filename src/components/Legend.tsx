@@ -1,34 +1,11 @@
 import LegendItem from '@/components/LegendItem'
-import { LegendType } from '@/types/Legend'
-import { cva } from 'class-variance-authority'
-import { FC } from 'react'
+import { useAppSelector } from '@/hooks/use-redux'
 
-const legendVariants = cva('absolute z-10 flex bg-red-500', {
-  variants: {
-    variant: {
-      stress: 'flex-col justify-center',
-      nodes: 'flex-row justify-center'
-    },
-    alignment: {
-      stress: 'ml-44',
-      nodes: 'ml-44'
-    }
-  },
-  defaultVariants: {
-    variant: 'stress',
-    alignment: 'stress'
-  }
-})
-
-export interface LegendProps {
-  array: LegendType[]
-  variant?: 'stress' | 'nodes'
-}
-
-const Legend: FC<LegendProps> = ({ array, variant }) => {
+const Legend = () => {
+  const { legend } = useAppSelector((store) => store.legend)
   return (
-    <div className={legendVariants({ variant, alignment: variant })}>
-      {array.map((item) => (
+    <div className="absolute z-10 ml-44 flex flex-col justify-center bg-red-500">
+      {legend.map((item) => (
         <LegendItem
           color={item.color}
           diapasonStart={item.diapasonStart}

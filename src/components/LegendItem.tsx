@@ -1,4 +1,4 @@
-import useConvertColor from '@/lib/useConvertColor'
+import useConvertColor from '@/hooks/useConvertColor'
 import { LegendType } from '@/types/Legend'
 import { FC } from 'react'
 

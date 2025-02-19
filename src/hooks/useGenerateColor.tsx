@@ -1,5 +1,6 @@
+import useStressUtils from '@/hooks/useStressUtils'
 import { generateColorArray } from '@/lib/colorUtils'
-import useStressUtils from '@/lib/useStressUtils'
+
 import { useEffect, useState } from 'react'
 
 export default function useGenerateColor() {

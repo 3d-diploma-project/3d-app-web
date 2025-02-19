@@ -1,4 +1,4 @@
-import useConvertColor from '@/lib/useConvertColor'
+import useConvertColor from '@/hooks/useConvertColor'
 import { describe, expect, it } from 'vitest'
 
 describe('useConvertColor', () => {

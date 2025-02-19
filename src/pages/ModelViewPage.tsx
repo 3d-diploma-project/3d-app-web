@@ -4,14 +4,11 @@ import Legend from '@/components/Legend'
 import Scene from '@/components/Scene'
 import Toolbar from '@/components/Toolbar'
 import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
-import { generateLegend } from '@/lib/colorUtils'
-import useStressUtils from '@/lib/useStressUtils'
-import { setLegend } from '@/redux/slices/legendSlice'
 import { setFaces, setReady, setVertices } from '@/redux/slices/modelSlice'
 import { Face } from '@/types/Face'
 import { Vertex } from '@/types/Vertex'
 import { Canvas } from '@react-three/fiber'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { GrPowerReset } from 'react-icons/gr'
 import { IoMove } from 'react-icons/io5'
@@ -38,12 +35,6 @@ const ModelViewPage = () => {
     setFilesUploaderOpen(false)
   }
 
-  const { stress } = useStressUtils()
-
-  const { min, max } = useAppSelector((store) => store.legend)
-
-  const legend = stress ? generateLegend(stress.min, stress.max) : []
-
   const { t } = useTranslation()
 
   const buttonsData = [
@@ -55,22 +46,12 @@ const ModelViewPage = () => {
     { tooltip: t('instrumentsSidebar.sidebarHints.delete'), icon: <MdDelete /> }
   ]
 
-  const onSetLegend = (min: number, max: number) => {
-    dispatch(setLegend({ min, max }))
-  }
-
-  useEffect(() => {
-    if (stress) {
-      onSetLegend(stress.min, stress.max)
-    }
-  }, [stress, dispatch])
-
   return (
     <>
       <div className="relative flex items-center justify-between">
         <InstrumentsSidebar buttonsData={buttonsData} />
 
-        {min !== null && max !== null && <Legend array={legend} variant="stress" />}
+        <Legend />
 
         {isReady && (
           <div data-testid="experience" className="fixed left-0 top-0 z-0 h-dvh w-full overflow-hidden">
