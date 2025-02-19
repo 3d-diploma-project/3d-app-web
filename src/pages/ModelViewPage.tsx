@@ -5,11 +5,13 @@ import Scene from '@/components/Scene'
 import Toolbar from '@/components/Toolbar'
 import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
 import { generateLegend } from '@/lib/colorUtils'
+import useStressUtils from '@/lib/useStressUtils'
+import { setLegend } from '@/redux/slices/legendSlice'
 import { setFaces, setReady, setVertices } from '@/redux/slices/modelSlice'
 import { Face } from '@/types/Face'
 import { Vertex } from '@/types/Vertex'
 import { Canvas } from '@react-three/fiber'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { GrPowerReset } from 'react-icons/gr'
 import { IoMove } from 'react-icons/io5'
@@ -36,9 +38,11 @@ const ModelViewPage = () => {
     setFilesUploaderOpen(false)
   }
 
+  const { stress } = useStressUtils()
+
   const { min, max } = useAppSelector((store) => store.legend)
 
-  const legend = generateLegend(min, max)
+  const legend = stress ? generateLegend(stress.min, stress.max) : []
 
   const { t } = useTranslation()
 
@@ -50,6 +54,16 @@ const ModelViewPage = () => {
     { tooltip: t('instrumentsSidebar.sidebarHints.copy'), icon: <PiCopySimpleLight /> },
     { tooltip: t('instrumentsSidebar.sidebarHints.delete'), icon: <MdDelete /> }
   ]
+
+  const onSetLegend = (min: number, max: number) => {
+    dispatch(setLegend({ min, max }))
+  }
+
+  useEffect(() => {
+    if (stress) {
+      onSetLegend(stress.min, stress.max)
+    }
+  }, [stress, dispatch])
 
   return (
     <>

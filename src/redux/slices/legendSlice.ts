@@ -1,28 +1,23 @@
-import { LegendType } from '@/types/Legend'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export interface LegendState {
-  legend: LegendType[]
-  min?: number
-  max?: number
+  min?: number | null
+  max?: number | null
   isLoaded: boolean
 }
 
 export const initialState: LegendState = {
-  legend: [],
-  isLoaded: false,
-  min: undefined,
-  max: undefined
+  min: null,
+  max: null,
+  isLoaded: false
 }
 
 export const legendSlice = createSlice({
   name: 'legend',
   initialState,
   reducers: {
-    setLegend: (state, action: PayloadAction<{ legend: LegendType[]; min: number; max: number }>) => {
-      state.legend = action.payload.legend
-      state.isLoaded =
-        action.payload.legend.length > 0 && action.payload.min !== undefined && action.payload.max !== undefined
+    setLegend: (state, action: PayloadAction<{ min: number; max: number }>) => {
+      state.isLoaded = action.payload.min !== undefined && action.payload.max !== undefined
       state.max = action.payload.max
       state.min = action.payload.min
     },
