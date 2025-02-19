@@ -1,4 +1,4 @@
-export type Legend = {
+export type LegendType = {
   diapasonStart: number
   diapasonEnd: number
   color: number[]

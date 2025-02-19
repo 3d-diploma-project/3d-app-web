@@ -1,24 +1,39 @@
 import LegendItem from '@/components/LegendItem'
-import { generateLegend } from '@/lib/colorUtils'
+import { LegendType } from '@/types/Legend'
+import { cva } from 'class-variance-authority'
+import { FC } from 'react'
 
-import useStressUtils from '@/lib/useStressUtils'
+const legendVariants = cva('absolute z-10 flex bg-red-500', {
+  variants: {
+    variant: {
+      stress: 'flex-col justify-center',
+      nodes: 'flex-row justify-center'
+    },
+    alignment: {
+      stress: 'ml-44',
+      nodes: 'ml-44'
+    }
+  },
+  defaultVariants: {
+    variant: 'stress',
+    alignment: 'stress'
+  }
+})
 
-const Legend = () => {
-  const { stress, stressLoaded } = useStressUtils()
+export interface LegendProps {
+  array: LegendType[]
+  variant?: 'stress' | 'nodes'
+}
 
-  if (!stressLoaded || !stress) return null
-
-  const legend = generateLegend(stress.min, stress.max)
-  console.log(legend)
-
+const Legend: FC<LegendProps> = ({ array, variant }) => {
   return (
-    <div className="absolute z-10 ml-44 flex flex-col justify-center">
-      {legend.map((item, idx) => (
+    <div className={legendVariants({ variant, alignment: variant })}>
+      {array.map((item) => (
         <LegendItem
           color={item.color}
           diapasonStart={item.diapasonStart}
+          diapasonEnd={item.diapasonEnd}
           key={item.diapasonStart}
-          lastValue={idx == legend.length - 1 ? item.diapasonEnd : null}
         />
       ))}
     </div>

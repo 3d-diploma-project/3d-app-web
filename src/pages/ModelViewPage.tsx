@@ -4,6 +4,7 @@ import Legend from '@/components/Legend'
 import Scene from '@/components/Scene'
 import Toolbar from '@/components/Toolbar'
 import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
+import { generateLegend } from '@/lib/colorUtils'
 import { setFaces, setReady, setVertices } from '@/redux/slices/modelSlice'
 import { Face } from '@/types/Face'
 import { Vertex } from '@/types/Vertex'
@@ -35,6 +36,10 @@ const ModelViewPage = () => {
     setFilesUploaderOpen(false)
   }
 
+  const { min, max } = useAppSelector((store) => store.legend)
+
+  const legend = generateLegend(min, max)
+
   const { t } = useTranslation()
 
   const buttonsData = [
@@ -51,7 +56,7 @@ const ModelViewPage = () => {
       <div className="relative flex items-center justify-between">
         <InstrumentsSidebar buttonsData={buttonsData} />
 
-        <Legend />
+        {min !== null && max !== null && <Legend array={legend} variant="stress" />}
 
         {isReady && (
           <div data-testid="experience" className="fixed left-0 top-0 z-0 h-dvh w-full overflow-hidden">
