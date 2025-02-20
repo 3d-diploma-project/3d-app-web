@@ -1,27 +1,28 @@
-import { Legend } from '@/types/Legend.ts'
+import { LegendType } from '@/types/Legend.ts'
 
 export const COLOR_ARRAY_SIZE = 7
 export const COLORS: number[][] = buildColorsForLegend(COLOR_ARRAY_SIZE)
 
-export function generateLegend(minValue: number, maxValue: number): Legend[] {
-  const legend: Legend[] = []
+export function generateLegend(minValue: number, maxValue: number): LegendType[] {
+  const legend: LegendType[] = []
 
   const diapason: number = maxValue - minValue
   const chunkSize: number = diapason / COLOR_ARRAY_SIZE
 
   for (let i = 0; i < COLOR_ARRAY_SIZE; i++) {
-    const minValueForColor = minValue + chunkSize * i
+    const rangeStart = minValue + chunkSize * i
+    const rangeEnd = minValue + chunkSize * (i + 1)
     legend[i] = {
-      minValueForColor,
+      rangeStart,
+      rangeEnd,
       color: COLORS[i]
     }
   }
-
   return legend
 }
 
 export function generateColorArray(values: number[], minValue: number, maxValue: number): Float32Array {
-  const legend: Legend[] = generateLegend(minValue, maxValue)
+  const legend: LegendType[] = generateLegend(minValue, maxValue)
   const colors: number[] = []
 
   for (const value of values) {
@@ -35,10 +36,10 @@ export function generateColorArray(values: number[], minValue: number, maxValue:
   return Float32Array.from(colors)
 }
 
-function getColorFromLegend(value: number, legend: Legend[]): number[] {
+function getColorFromLegend(value: number, legend: LegendType[]): number[] {
   for (let i = legend.length - 1; i >= 0; i--) {
     const legendItem = legend[i]
-    if (value >= legendItem.minValueForColor) {
+    if (value >= legendItem.rangeStart) {
       return legendItem.color
     }
   }

@@ -1,18 +1,17 @@
 import { useAppSelector } from '@/hooks/use-redux'
 import { Wireframe } from '@react-three/drei'
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC, useRef } from 'react'
 import * as THREE from 'three'
 
 import NodeDisplay from '@/components/NodeDisplay'
-import { generateColorArray } from '@/lib/colorUtils.ts'
+
+import useGenerateColor from '@/hooks/useGenerateColor'
+
 import { generateFaceIndexArray, generateVertexPositions } from '@/lib/utils'
-import { ModelPhysicalQuantity } from '@/types/ModelPhysicalQuantity.ts'
 
 const CustomGeometry: FC = () => {
   const vertices = useAppSelector((store) => store.model.vertices)
   const faces = useAppSelector((store) => store.model.faces)
-  const stress: ModelPhysicalQuantity | null = useAppSelector((store) => store.model.stress)
-  const stressLoaded = useAppSelector((store) => store.model.stressLoaded)
 
   const { displayNodeIndices } = useAppSelector((store) => store.model)
 
@@ -24,13 +23,8 @@ const CustomGeometry: FC = () => {
 
   const position = generateVertexPositions(vertices)
   const indexArray = generateFaceIndexArray(faces)
-  const [color, setColor] = useState(new Float32Array())
 
-  useEffect(() => {
-    if (stressLoaded && stress) {
-      setColor(generateColorArray(stress.values, stress.min, stress.max))
-    }
-  }, [stress, stressLoaded])
+  const { color, stressLoaded } = useGenerateColor()
 
   return (
     <>

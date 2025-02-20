@@ -16,31 +16,38 @@ describe('generateLegend', () => {
   it('generate legend', () => {
     const expected = [
       {
-        minValueForColor: 0,
+        rangeStart: 0,
+        rangeEnd: 1,
         color: [0.15999999999999998, 0.547657142857143, 0.8]
       },
       {
-        minValueForColor: 1,
+        rangeStart: 1,
+        rangeEnd: 2,
         color: [0.15999999999999998, 0.8, 0.6902857142857144]
       },
       {
-        minValueForColor: 2,
+        rangeStart: 2,
+        rangeEnd: 3,
         color: [0.15999999999999998, 0.8, 0.3282285714285714]
       },
       {
-        minValueForColor: 3,
+        rangeStart: 3,
+        rangeEnd: 4,
         color: [0.35382857142857144, 0.8, 0.15999999999999998]
       },
       {
-        minValueForColor: 4,
+        rangeStart: 4,
+        rangeEnd: 5,
         color: [0.7158857142857142, 0.8, 0.15999999999999998]
       },
       {
-        minValueForColor: 5,
+        rangeStart: 5,
+        rangeEnd: 6,
         color: [0.8, 0.5220571428571429, 0.15999999999999998]
       },
       {
-        minValueForColor: 6,
+        rangeStart: 6,
+        rangeEnd: 7,
         color: [0.8, 0.15999999999999998, 0.15999999999999998]
       }
     ]

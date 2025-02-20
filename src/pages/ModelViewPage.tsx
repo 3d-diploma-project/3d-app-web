@@ -1,5 +1,6 @@
 import FilesUploader from '@/components/FilesUploader'
 import InstrumentsSidebar from '@/components/InstrumentsSidebar'
+import Legend from '@/components/Legend'
 import Scene from '@/components/Scene'
 import Toolbar from '@/components/Toolbar'
 import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
@@ -49,8 +50,11 @@ const ModelViewPage = () => {
     <>
       <div className="relative flex items-center justify-between">
         <InstrumentsSidebar buttonsData={buttonsData} />
+
+        <Legend />
+
         {isReady && (
-          <div data-testid="experience" className="h-full w-full">
+          <div data-testid="experience" className="fixed left-0 top-0 z-0 h-dvh w-full overflow-hidden">
             <Canvas
               camera={{
                 fov: 45,
@@ -63,6 +67,7 @@ const ModelViewPage = () => {
             </Canvas>
           </div>
         )}
+
         <Toolbar />
       </div>
 

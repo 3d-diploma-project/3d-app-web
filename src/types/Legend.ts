@@ -1,4 +1,5 @@
-export type Legend = {
-  minValueForColor: number
+export type LegendType = {
+  rangeStart: number
+  rangeEnd: number
   color: number[]
 }
