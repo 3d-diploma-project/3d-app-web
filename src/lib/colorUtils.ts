@@ -10,11 +10,11 @@ export function generateLegend(minValue: number, maxValue: number): LegendType[]
   const chunkSize: number = diapason / COLOR_ARRAY_SIZE
 
   for (let i = 0; i < COLOR_ARRAY_SIZE; i++) {
-    const diapasonStart = minValue + chunkSize * i
-    const diapasonEnd = minValue + chunkSize * (i + 1)
+    const rangeStart = minValue + chunkSize * i
+    const rangeEnd = minValue + chunkSize * (i + 1)
     legend[i] = {
-      diapasonStart,
-      diapasonEnd,
+      rangeStart,
+      rangeEnd,
       color: COLORS[i]
     }
   }
@@ -39,7 +39,7 @@ export function generateColorArray(values: number[], minValue: number, maxValue:
 function getColorFromLegend(value: number, legend: LegendType[]): number[] {
   for (let i = legend.length - 1; i >= 0; i--) {
     const legendItem = legend[i]
-    if (value >= legendItem.diapasonStart) {
+    if (value >= legendItem.rangeStart) {
       return legendItem.color
     }
   }

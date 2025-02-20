@@ -11,12 +11,7 @@ const Legend = () => {
   return (
     <div className="absolute z-10 ml-44 flex flex-col justify-center bg-red-500">
       {legendColors.map((item) => (
-        <LegendItem
-          color={item.color}
-          diapasonStart={item.diapasonStart}
-          diapasonEnd={item.diapasonEnd}
-          key={item.diapasonStart}
-        />
+        <LegendItem color={item.color} rangeStart={item.rangeStart} rangeEnd={item.rangeEnd} key={item.rangeStart} />
       ))}
     </div>
   )

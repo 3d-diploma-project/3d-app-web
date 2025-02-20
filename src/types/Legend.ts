@@ -1,5 +1,5 @@
 export type LegendType = {
-  diapasonStart: number
-  diapasonEnd: number
+  rangeStart: number
+  rangeEnd: number
   color: number[]
 }
