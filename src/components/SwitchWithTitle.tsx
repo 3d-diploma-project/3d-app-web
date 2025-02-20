@@ -6,8 +6,8 @@ interface SwitchWithTitleProps extends React.ComponentPropsWithoutRef<typeof Swi
 
 const SwitchWithTitle = ({ label, ...props }: SwitchWithTitleProps) => {
   return (
-    <div className="flex items-center justify-between">
-      <label htmlFor={props.id} className="cursor-pointer">
+    <div className="flex items-center">
+      <label htmlFor={props.id} className="flex-1 cursor-pointer">
         {label}
       </label>
       <Switch id={props.id} {...props} />
