@@ -21,15 +21,7 @@ export const initialState: LegendState = {
 export const legendSlice = createSlice({
   name: 'legend',
   initialState,
-  reducers: {
-    setLegend: (state, action: PayloadAction<{ min: number; max: number }>) => {
-      state.max = action.payload.max
-      state.min = action.payload.min
-      state.legend = generateLegend(state.min, state.max)
-      state.isLoaded = true
-    },
-    resetLegend: () => initialState
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(
       setStress,
@@ -48,7 +40,5 @@ export const legendSlice = createSlice({
     )
   }
 })
-
-export const { setLegend } = legendSlice.actions
 
 export default legendSlice.reducer

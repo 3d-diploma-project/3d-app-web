@@ -1,7 +1,7 @@
 import useConvertColor from '@/hooks/useConvertColor'
 import { describe, expect, it } from 'vitest'
 
-describe('useConvertColor', () => {
+describe('color', () => {
   it('converts color to rgb', () => {
     const mockArray = [1, 0, 1]
     const expected = 'rgb(255, 0, 255)'
