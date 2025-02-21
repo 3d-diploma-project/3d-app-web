@@ -28,6 +28,11 @@ const Toolbar = () => {
         buttonText={t('toolbar.toolbarSections.buttonsSection.fileUpload')}
         onFileSelect={loadStress}
       />
+      <FileUploadButton
+        title={t('toolbar.toolbarSections.buttonsSection.randomCharacteristics')}
+        buttonText={t('toolbar.toolbarSections.buttonsSection.fileUpload')}
+        onFileSelect={loadStress}
+      />
     </div>
   )
 }
