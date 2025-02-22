@@ -24,7 +24,7 @@ const CustomGeometry: FC = () => {
   const position = generateVertexPositions(vertices)
   const indexArray = generateFaceIndexArray(faces)
 
-  const { color, stressLoaded } = useGenerateColor()
+  const { color, stressLoaded, otherLoaded } = useGenerateColor()
 
   return (
     <>
@@ -35,7 +35,7 @@ const CustomGeometry: FC = () => {
           <bufferAttribute attach="attributes-color" args={[color, 3]} />
         </bufferGeometry>
 
-        <meshBasicMaterial vertexColors={stressLoaded} />
+        <meshBasicMaterial vertexColors={stressLoaded || otherLoaded} />
 
         <Wireframe thickness={0.01} stroke={'black'} />
       </mesh>

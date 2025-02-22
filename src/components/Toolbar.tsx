@@ -2,7 +2,7 @@ import FileUploadButton from '@/components/FileUploadButton.tsx'
 import SwitchWithTitle from '@/components/SwitchWithTitle'
 import { useAppDispatch, useAppSelector } from '@/hooks/use-redux.ts'
 import { parseDefaultPhysicalQuantity } from '@/lib/parser.ts'
-import { setDisplayNodeIndices, setStress } from '@/redux/slices/modelSlice.ts'
+import { setCharacteristic, setDisplayNodeIndices, setStress } from '@/redux/slices/modelSlice.ts'
 import { useTranslation } from 'react-i18next'
 
 const Toolbar = () => {
@@ -14,6 +14,12 @@ const Toolbar = () => {
     const input = await file.text()
     const stress = parseDefaultPhysicalQuantity(input)
     dispatch(setStress({ stress, fileName: file.name }))
+  }
+
+  const loadCharacteristic = async (file: File) => {
+    const input = await file.text()
+    const otherCharacteristic = parseDefaultPhysicalQuantity(input)
+    dispatch(setCharacteristic({ otherCharacteristic, fileName: file.name }))
   }
 
   return (
@@ -29,9 +35,9 @@ const Toolbar = () => {
         onFileSelect={loadStress}
       />
       <FileUploadButton
-        title={t('toolbar.toolbarSections.buttonsSection.randomCharacteristics')}
+        title={t('toolbar.toolbarSections.buttonsSection.otherCharacteristic')}
         buttonText={t('toolbar.toolbarSections.buttonsSection.fileUpload')}
-        onFileSelect={loadStress}
+        onFileSelect={loadCharacteristic}
       />
     </div>
   )

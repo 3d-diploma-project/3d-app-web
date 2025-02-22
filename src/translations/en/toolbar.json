@@ -16,7 +16,7 @@
       "nodeDisplacement": "Displacement in nodes",
       "nodeForces": "Applied forces",
       "nodeFixes": "Fixed nodes",
-      "randomCharacteristics": "Random characteristic"
+      "otherCharacteristic": "Other characteristic"
     }
   }
 }
