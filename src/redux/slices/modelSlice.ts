@@ -16,6 +16,9 @@ export interface ModelState {
   stress: ModelPhysicalQuantity | null
   stressLoaded: boolean
   stressFileName: string | null
+  otherFileName: string | null
+  otherLoaded: boolean
+  otherCharacteristic: ModelPhysicalQuantity | null
 }
 
 export const initialState: ModelState = {
@@ -29,7 +32,10 @@ export const initialState: ModelState = {
   displayNodeIndices: false,
   stress: null,
   stressLoaded: false,
-  stressFileName: null
+  stressFileName: null,
+  otherFileName: null,
+  otherLoaded: false,
+  otherCharacteristic: null
 }
 
 export const modelSlice = createSlice({
@@ -60,10 +66,20 @@ export const modelSlice = createSlice({
     },
     setDisplayNodeIndices: (state, action: PayloadAction<boolean>) => {
       state.displayNodeIndices = action.payload
+    },
+    setCharacteristic: (
+      state,
+      action: PayloadAction<{ otherCharacteristic: ModelPhysicalQuantity; fileName: string }>
+    ) => {
+      const { otherCharacteristic, fileName } = action.payload
+      state.otherCharacteristic = otherCharacteristic
+      state.otherFileName = fileName
+      state.otherLoaded = true
     }
   }
 })
 
-export const { setFaces, setVertices, resetModel, setReady, setDisplayNodeIndices, setStress } = modelSlice.actions
+export const { setFaces, setVertices, resetModel, setReady, setDisplayNodeIndices, setStress, setCharacteristic } =
+  modelSlice.actions
 
 export default modelSlice.reducer
